@@ -136,20 +136,20 @@
  ],
  "latency": {
   "torch_cuda_ms": {
-   "mean": 0.6839408699670457,
-   "p95": 0.8961485984400496
+   "mean": 0.6444395350081322,
+   "p95": 0.7290156519957233
   },
   "torch_cpu_ms": {
-   "mean": 1.0688168699380185,
-   "p95": 1.392920099715411
+   "mean": 0.9492356500413734,
+   "p95": 1.2824199005990522
   },
   "onnx_cpu_ms": {
-   "mean": 0.4959437449906545,
-   "p95": 0.6193177016029949
+   "mean": 0.6337756400898797,
+   "p95": 0.8789727013208902
   },
-  "holistic_ms_per_frame": 10.442875758326409,
+  "holistic_ms_per_frame": 10.458200733319245,
   "holistic_benchmark_input": "CC BY-SA 4.0 sign-language clip (Wikimedia Commons), 1080p resized to 640 px",
-  "est_fps": 91.41754278848482
+  "est_fps": 90.15525875057823
  },
  "hardware": {
   "os": "Fedora Linux 44 (KDE Plasma Desktop Edition) (kernel 7.2.13-200.fc44.x86_64)",
@@ -158,7 +158,7 @@
   "logical_cores": 16,
   "ram_gb": 14.9,
   "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU (8 GB, driver 615.78.08)",
-  "free_disk_gb": 113.4
+  "free_disk_gb": 113.3
  },
  "extraction": {
   "clips_total": 95290,
@@ -170,5 +170,5 @@
   "source": "precomputed features (no video extraction)"
  },
  "published_baseline": null,
- "generated_at": "2026-11-02 15:48:39"
+ "generated_at": "2026-11-02 16:32:23"
 }

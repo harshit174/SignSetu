@@ -455,7 +455,12 @@ if page == PAGES[0]:
             ss["status"] = "IDLE"
     elif cam_on:
         idx = int(cam_src.split()[-1])
-        cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW if os.name == "nt" else cv2.CAP_V4L2)
+        backend = cv2.CAP_DSHOW if os.name == "nt" else cv2.CAP_V4L2
+        for _try in range(14):      # a rerun may start while the previous run is still releasing the device
+            cap = cv2.VideoCapture(idx, backend)
+            if cap.isOpened():
+                break
+            cap.release(); time.sleep(0.25)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640); cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480); cap.set(cv2.CAP_PROP_FPS, 30)
         if not cap.isOpened():
             cap.release()
