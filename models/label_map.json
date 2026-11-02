@@ -1,0 +1,1808 @@
+{
+ "0": {
+  "gloss": "0",
+  "category": "Numbers",
+  "class_key": "0",
+  "hindi": "शून्य"
+ },
+ "1": {
+  "gloss": "1",
+  "category": "Numbers",
+  "class_key": "1",
+  "hindi": "एक"
+ },
+ "2": {
+  "gloss": "2",
+  "category": "Numbers",
+  "class_key": "2",
+  "hindi": "दो"
+ },
+ "3": {
+  "gloss": "3",
+  "category": "Numbers",
+  "class_key": "3",
+  "hindi": "तीन"
+ },
+ "4": {
+  "gloss": "4",
+  "category": "Numbers",
+  "class_key": "4",
+  "hindi": "चार"
+ },
+ "5": {
+  "gloss": "5",
+  "category": "Numbers",
+  "class_key": "5",
+  "hindi": "पाँच"
+ },
+ "6": {
+  "gloss": "6",
+  "category": "Numbers",
+  "class_key": "6",
+  "hindi": "छह"
+ },
+ "7": {
+  "gloss": "7",
+  "category": "Numbers",
+  "class_key": "7",
+  "hindi": "सात"
+ },
+ "8": {
+  "gloss": "8",
+  "category": "Numbers",
+  "class_key": "8",
+  "hindi": "आठ"
+ },
+ "9": {
+  "gloss": "9",
+  "category": "Numbers",
+  "class_key": "9",
+  "hindi": "नौ"
+ },
+ "10": {
+  "gloss": "A",
+  "category": "Alphabet",
+  "class_key": "a",
+  "hindi": "ए"
+ },
+ "11": {
+  "gloss": "Above",
+  "category": "Position & Direction",
+  "class_key": "above",
+  "hindi": "ऊपर"
+ },
+ "12": {
+  "gloss": "Abstract",
+  "category": "Descriptions & Other",
+  "class_key": "abstract",
+  "hindi": "अमूर्त"
+ },
+ "13": {
+  "gloss": "Accessible",
+  "category": "Descriptions & Other",
+  "class_key": "accessible",
+  "hindi": "सुलभ"
+ },
+ "14": {
+  "gloss": "Accident",
+  "category": "Emergency & Health",
+  "class_key": "accident",
+  "hindi": "दुर्घटना"
+ },
+ "15": {
+  "gloss": "Afraid",
+  "category": "Descriptions & Other",
+  "class_key": "afraid",
+  "hindi": "डरा हुआ"
+ },
+ "16": {
+  "gloss": "After",
+  "category": "Time & Frequency",
+  "class_key": "after",
+  "hindi": "बाद में"
+ },
+ "17": {
+  "gloss": "Afternoon",
+  "category": "Time & Frequency",
+  "class_key": "afternoon",
+  "hindi": "दोपहर"
+ },
+ "18": {
+  "gloss": "Ahead",
+  "category": "Position & Direction",
+  "class_key": "ahead",
+  "hindi": "आगे"
+ },
+ "19": {
+  "gloss": "Alive",
+  "category": "Emergency & Health",
+  "class_key": "alive",
+  "hindi": "जीवित"
+ },
+ "20": {
+  "gloss": "Already",
+  "category": "Time & Frequency",
+  "class_key": "already",
+  "hindi": "पहले से"
+ },
+ "21": {
+  "gloss": "Alright",
+  "category": "Greetings & Phrases",
+  "class_key": "alright",
+  "hindi": "ठीक है"
+ },
+ "22": {
+  "gloss": "Ambulance",
+  "category": "Emergency & Health",
+  "class_key": "ambulance",
+  "hindi": "एम्बुलेंस"
+ },
+ "23": {
+  "gloss": "Ancient",
+  "category": "Descriptions & Other",
+  "class_key": "ancient",
+  "hindi": "प्राचीन"
+ },
+ "24": {
+  "gloss": "Angry",
+  "category": "Descriptions & Other",
+  "class_key": "angry",
+  "hindi": "गुस्सा"
+ },
+ "25": {
+  "gloss": "Another",
+  "category": "Position & Direction",
+  "class_key": "another",
+  "hindi": "दूसरा"
+ },
+ "26": {
+  "gloss": "Around",
+  "category": "Position & Direction",
+  "class_key": "around",
+  "hindi": "आस-पास"
+ },
+ "27": {
+  "gloss": "B",
+  "category": "Alphabet",
+  "class_key": "b",
+  "hindi": "बी"
+ },
+ "28": {
+  "gloss": "Bad",
+  "category": "Descriptions & Other",
+  "class_key": "bad",
+  "hindi": "बुरा"
+ },
+ "29": {
+  "gloss": "Bag",
+  "category": "Objects",
+  "class_key": "bag",
+  "hindi": "थैला"
+ },
+ "30": {
+  "gloss": "Beautiful",
+  "category": "Descriptions & Other",
+  "class_key": "beautiful",
+  "hindi": "सुंदर"
+ },
+ "31": {
+  "gloss": "Before",
+  "category": "Time & Frequency",
+  "class_key": "before",
+  "hindi": "पहले"
+ },
+ "32": {
+  "gloss": "Behind",
+  "category": "Position & Direction",
+  "class_key": "behind",
+  "hindi": "पीछे"
+ },
+ "33": {
+  "gloss": "Below",
+  "category": "Position & Direction",
+  "class_key": "below",
+  "hindi": "नीचे"
+ },
+ "34": {
+  "gloss": "Besides",
+  "category": "Position & Direction",
+  "class_key": "besides",
+  "hindi": "के अलावा"
+ },
+ "35": {
+  "gloss": "Better",
+  "category": "Descriptions & Other",
+  "class_key": "better",
+  "hindi": "बेहतर"
+ },
+ "36": {
+  "gloss": "Between",
+  "category": "Position & Direction",
+  "class_key": "between",
+  "hindi": "बीच में"
+ },
+ "37": {
+  "gloss": "Big / Large",
+  "category": "Descriptions & Other",
+  "class_key": "big_large",
+  "hindi": "बड़ा"
+ },
+ "38": {
+  "gloss": "Bike",
+  "category": "Objects",
+  "class_key": "bike",
+  "hindi": "साइकिल"
+ },
+ "39": {
+  "gloss": "Black",
+  "category": "Colors",
+  "class_key": "black",
+  "hindi": "काला"
+ },
+ "40": {
+  "gloss": "Blind",
+  "category": "Emergency & Health",
+  "class_key": "blind",
+  "hindi": "दृष्टिहीन"
+ },
+ "41": {
+  "gloss": "Blue",
+  "category": "Colors",
+  "class_key": "blue",
+  "hindi": "नीला"
+ },
+ "42": {
+  "gloss": "Book",
+  "category": "Objects",
+  "class_key": "book",
+  "hindi": "किताब"
+ },
+ "43": {
+  "gloss": "Bottle",
+  "category": "Objects",
+  "class_key": "bottle",
+  "hindi": "बोतल"
+ },
+ "44": {
+  "gloss": "Break",
+  "category": "Actions",
+  "class_key": "break",
+  "hindi": "तोड़ना"
+ },
+ "45": {
+  "gloss": "Broken",
+  "category": "Descriptions & Other",
+  "class_key": "broken",
+  "hindi": "टूटा हुआ"
+ },
+ "46": {
+  "gloss": "Bronze",
+  "category": "Colors",
+  "class_key": "bronze",
+  "hindi": "कांस्य"
+ },
+ "47": {
+  "gloss": "Brown",
+  "category": "Colors",
+  "class_key": "brown",
+  "hindi": "भूरा"
+ },
+ "48": {
+  "gloss": "Brush",
+  "category": "Objects",
+  "class_key": "brush",
+  "hindi": "ब्रश"
+ },
+ "49": {
+  "gloss": "Build",
+  "category": "Actions",
+  "class_key": "build",
+  "hindi": "बनाना"
+ },
+ "50": {
+  "gloss": "Bye",
+  "category": "Greetings & Phrases",
+  "class_key": "bye",
+  "hindi": "अलविदा"
+ },
+ "51": {
+  "gloss": "C",
+  "category": "Alphabet",
+  "class_key": "c",
+  "hindi": "सी"
+ },
+ "52": {
+  "gloss": "Calculator",
+  "category": "Objects",
+  "class_key": "calculator",
+  "hindi": "कैलकुलेटर"
+ },
+ "53": {
+  "gloss": "Cancel",
+  "category": "Actions",
+  "class_key": "cancel",
+  "hindi": "रद्द करना"
+ },
+ "54": {
+  "gloss": "Cap",
+  "category": "Objects",
+  "class_key": "cap",
+  "hindi": "टोपी"
+ },
+ "55": {
+  "gloss": "Car",
+  "category": "Objects",
+  "class_key": "car",
+  "hindi": "गाड़ी"
+ },
+ "56": {
+  "gloss": "Careful",
+  "category": "Descriptions & Other",
+  "class_key": "careful",
+  "hindi": "सावधान"
+ },
+ "57": {
+  "gloss": "Carry",
+  "category": "Actions",
+  "class_key": "carry",
+  "hindi": "उठाना"
+ },
+ "58": {
+  "gloss": "Chair",
+  "category": "Objects",
+  "class_key": "chair",
+  "hindi": "कुर्सी"
+ },
+ "59": {
+  "gloss": "Cheap",
+  "category": "Descriptions & Other",
+  "class_key": "cheap",
+  "hindi": "सस्ता"
+ },
+ "60": {
+  "gloss": "Chew",
+  "category": "Actions",
+  "class_key": "chew",
+  "hindi": "चबाना"
+ },
+ "61": {
+  "gloss": "Clean",
+  "category": "Descriptions & Other",
+  "class_key": "clean",
+  "hindi": "साफ़"
+ },
+ "62": {
+  "gloss": "Clearly",
+  "category": "Descriptions & Other",
+  "class_key": "clearly",
+  "hindi": "स्पष्ट रूप से"
+ },
+ "63": {
+  "gloss": "Climb Down",
+  "category": "Actions",
+  "class_key": "climb_down",
+  "hindi": "नीचे उतरना"
+ },
+ "64": {
+  "gloss": "Climb Up",
+  "category": "Actions",
+  "class_key": "climb_up",
+  "hindi": "ऊपर चढ़ना"
+ },
+ "65": {
+  "gloss": "Cold",
+  "category": "Descriptions & Other",
+  "class_key": "cold",
+  "hindi": "ठंडा"
+ },
+ "66": {
+  "gloss": "Colors",
+  "category": "Colors",
+  "class_key": "colors",
+  "hindi": "रंग"
+ },
+ "67": {
+  "gloss": "Comfortable",
+  "category": "Descriptions & Other",
+  "class_key": "comfortable",
+  "hindi": "आरामदायक"
+ },
+ "68": {
+  "gloss": "Confident",
+  "category": "Descriptions & Other",
+  "class_key": "confident",
+  "hindi": "आत्मविश्वासी"
+ },
+ "69": {
+  "gloss": "Cool",
+  "category": "Descriptions & Other",
+  "class_key": "cool",
+  "hindi": "शीतल"
+ },
+ "70": {
+  "gloss": "Coward",
+  "category": "Descriptions & Other",
+  "class_key": "coward",
+  "hindi": "कायर"
+ },
+ "71": {
+  "gloss": "CPR",
+  "category": "Emergency & Health",
+  "class_key": "cpr",
+  "hindi": "सीपीआर"
+ },
+ "72": {
+  "gloss": "Cruel",
+  "category": "Descriptions & Other",
+  "class_key": "cruel",
+  "hindi": "क्रूर"
+ },
+ "73": {
+  "gloss": "Cupboard",
+  "category": "Objects",
+  "class_key": "cupboard",
+  "hindi": "अलमारी"
+ },
+ "74": {
+  "gloss": "Curved",
+  "category": "Descriptions & Other",
+  "class_key": "curved",
+  "hindi": "घुमावदार"
+ },
+ "75": {
+  "gloss": "Cute",
+  "category": "Descriptions & Other",
+  "class_key": "cute",
+  "hindi": "प्यारा"
+ },
+ "76": {
+  "gloss": "Cyclone",
+  "category": "Emergency & Health",
+  "class_key": "cyclone",
+  "hindi": "चक्रवात"
+ },
+ "77": {
+  "gloss": "D",
+  "category": "Alphabet",
+  "class_key": "d",
+  "hindi": "डी"
+ },
+ "78": {
+  "gloss": "Danger",
+  "category": "Emergency & Health",
+  "class_key": "danger",
+  "hindi": "खतरा"
+ },
+ "79": {
+  "gloss": "Dangerous",
+  "category": "Emergency & Health",
+  "class_key": "dangerous",
+  "hindi": "खतरनाक"
+ },
+ "80": {
+  "gloss": "Dark Green",
+  "category": "Colors",
+  "class_key": "dark_green",
+  "hindi": "गहरा हरा"
+ },
+ "81": {
+  "gloss": "Dark Pink",
+  "category": "Colors",
+  "class_key": "dark_pink",
+  "hindi": "गहरा गुलाबी"
+ },
+ "82": {
+  "gloss": "Dead",
+  "category": "Emergency & Health",
+  "class_key": "dead",
+  "hindi": "मृत"
+ },
+ "83": {
+  "gloss": "Deaf",
+  "category": "Emergency & Health",
+  "class_key": "deaf",
+  "hindi": "बधिर"
+ },
+ "84": {
+  "gloss": "Deep",
+  "category": "Descriptions & Other",
+  "class_key": "deep",
+  "hindi": "गहरा"
+ },
+ "85": {
+  "gloss": "Delicious",
+  "category": "Descriptions & Other",
+  "class_key": "delicious",
+  "hindi": "स्वादिष्ट"
+ },
+ "86": {
+  "gloss": "Dim",
+  "category": "Descriptions & Other",
+  "class_key": "dim",
+  "hindi": "धुंधला"
+ },
+ "87": {
+  "gloss": "Dirty",
+  "category": "Descriptions & Other",
+  "class_key": "dirty",
+  "hindi": "गंदा"
+ },
+ "88": {
+  "gloss": "Doctor",
+  "category": "Emergency & Health",
+  "class_key": "doctor",
+  "hindi": "डॉक्टर"
+ },
+ "89": {
+  "gloss": "Door",
+  "category": "Objects",
+  "class_key": "door",
+  "hindi": "दरवाज़ा"
+ },
+ "90": {
+  "gloss": "Dream",
+  "category": "Actions",
+  "class_key": "dream",
+  "hindi": "सपना"
+ },
+ "91": {
+  "gloss": "Dry",
+  "category": "Descriptions & Other",
+  "class_key": "dry",
+  "hindi": "सूखा"
+ },
+ "92": {
+  "gloss": "E",
+  "category": "Alphabet",
+  "class_key": "e",
+  "hindi": "ई"
+ },
+ "93": {
+  "gloss": "Earthquake",
+  "category": "Emergency & Health",
+  "class_key": "earthquake",
+  "hindi": "भूकंप"
+ },
+ "94": {
+  "gloss": "Easy",
+  "category": "Descriptions & Other",
+  "class_key": "easy",
+  "hindi": "आसान"
+ },
+ "95": {
+  "gloss": "Emergency",
+  "category": "Emergency & Health",
+  "class_key": "emergency",
+  "hindi": "आपातकाल"
+ },
+ "96": {
+  "gloss": "Equal",
+  "category": "Descriptions & Other",
+  "class_key": "equal",
+  "hindi": "बराबर"
+ },
+ "97": {
+  "gloss": "Eraser",
+  "category": "Objects",
+  "class_key": "eraser",
+  "hindi": "रबड़"
+ },
+ "98": {
+  "gloss": "Evening",
+  "category": "Time & Frequency",
+  "class_key": "evening",
+  "hindi": "शाम"
+ },
+ "99": {
+  "gloss": "Examine",
+  "category": "Actions",
+  "class_key": "examine",
+  "hindi": "जाँचना"
+ },
+ "100": {
+  "gloss": "Excited",
+  "category": "Descriptions & Other",
+  "class_key": "excited",
+  "hindi": "उत्साहित"
+ },
+ "101": {
+  "gloss": "Exit",
+  "category": "Actions",
+  "class_key": "exit",
+  "hindi": "निकास"
+ },
+ "102": {
+  "gloss": "Expensive",
+  "category": "Descriptions & Other",
+  "class_key": "expensive",
+  "hindi": "महँगा"
+ },
+ "103": {
+  "gloss": "F",
+  "category": "Alphabet",
+  "class_key": "f",
+  "hindi": "एफ"
+ },
+ "104": {
+  "gloss": "Famous",
+  "category": "Descriptions & Other",
+  "class_key": "famous",
+  "hindi": "प्रसिद्ध"
+ },
+ "105": {
+  "gloss": "Fan",
+  "category": "Objects",
+  "class_key": "fan",
+  "hindi": "पंखा"
+ },
+ "106": {
+  "gloss": "Fast",
+  "category": "Descriptions & Other",
+  "class_key": "fast",
+  "hindi": "तेज़"
+ },
+ "107": {
+  "gloss": "Fat",
+  "category": "Descriptions & Other",
+  "class_key": "fat",
+  "hindi": "मोटा"
+ },
+ "108": {
+  "gloss": "Female",
+  "category": "Descriptions & Other",
+  "class_key": "female",
+  "hindi": "महिला"
+ },
+ "109": {
+  "gloss": "Fire",
+  "category": "Emergency & Health",
+  "class_key": "fire",
+  "hindi": "आग"
+ },
+ "110": {
+  "gloss": "Fire Extinguisher",
+  "category": "Emergency & Health",
+  "class_key": "fire_extinguisher",
+  "hindi": "अग्निशामक"
+ },
+ "111": {
+  "gloss": "Flat",
+  "category": "Descriptions & Other",
+  "class_key": "flat",
+  "hindi": "समतल"
+ },
+ "112": {
+  "gloss": "Flood",
+  "category": "Emergency & Health",
+  "class_key": "flood",
+  "hindi": "बाढ़"
+ },
+ "113": {
+  "gloss": "Frankly",
+  "category": "Descriptions & Other",
+  "class_key": "frankly",
+  "hindi": "साफ़-साफ़"
+ },
+ "114": {
+  "gloss": "Friday",
+  "category": "Days",
+  "class_key": "friday",
+  "hindi": "शुक्रवार"
+ },
+ "115": {
+  "gloss": "From",
+  "category": "Position & Direction",
+  "class_key": "from",
+  "hindi": "से"
+ },
+ "116": {
+  "gloss": "Funny",
+  "category": "Descriptions & Other",
+  "class_key": "funny",
+  "hindi": "मज़ेदार"
+ },
+ "117": {
+  "gloss": "G",
+  "category": "Alphabet",
+  "class_key": "g",
+  "hindi": "जी"
+ },
+ "118": {
+  "gloss": "Golden",
+  "category": "Colors",
+  "class_key": "golden",
+  "hindi": "सुनहरा"
+ },
+ "119": {
+  "gloss": "Good",
+  "category": "Descriptions & Other",
+  "class_key": "good",
+  "hindi": "अच्छा"
+ },
+ "120": {
+  "gloss": "Good Afternoon",
+  "category": "Greetings & Phrases",
+  "class_key": "good_afternoon",
+  "hindi": "शुभ दोपहर"
+ },
+ "121": {
+  "gloss": "Good Evening",
+  "category": "Greetings & Phrases",
+  "class_key": "good_evening",
+  "hindi": "शुभ संध्या"
+ },
+ "122": {
+  "gloss": "Good Morning",
+  "category": "Greetings & Phrases",
+  "class_key": "good_morning",
+  "hindi": "सुप्रभात"
+ },
+ "123": {
+  "gloss": "Good Night",
+  "category": "Greetings & Phrases",
+  "class_key": "good_night",
+  "hindi": "शुभ रात्रि"
+ },
+ "124": {
+  "gloss": "Green",
+  "category": "Colors",
+  "class_key": "green",
+  "hindi": "हरा"
+ },
+ "125": {
+  "gloss": "Grey",
+  "category": "Colors",
+  "class_key": "grey",
+  "hindi": "स्लेटी"
+ },
+ "126": {
+  "gloss": "H",
+  "category": "Alphabet",
+  "class_key": "h",
+  "hindi": "एच"
+ },
+ "127": {
+  "gloss": "Handsome",
+  "category": "Descriptions & Other",
+  "class_key": "handsome",
+  "hindi": "सुदर्शन"
+ },
+ "128": {
+  "gloss": "Happy",
+  "category": "Descriptions & Other",
+  "class_key": "happy",
+  "hindi": "खुश"
+ },
+ "129": {
+  "gloss": "Hard",
+  "category": "Descriptions & Other",
+  "class_key": "hard",
+  "hindi": "कठिन"
+ },
+ "130": {
+  "gloss": "Hardworking",
+  "category": "Descriptions & Other",
+  "class_key": "hardworking",
+  "hindi": "मेहनती"
+ },
+ "131": {
+  "gloss": "He",
+  "category": "Pronouns",
+  "class_key": "he",
+  "hindi": "वह"
+ },
+ "132": {
+  "gloss": "Healthy",
+  "category": "Emergency & Health",
+  "class_key": "healthy",
+  "hindi": "स्वस्थ"
+ },
+ "133": {
+  "gloss": "Heavy",
+  "category": "Descriptions & Other",
+  "class_key": "heavy",
+  "hindi": "भारी"
+ },
+ "134": {
+  "gloss": "Hello",
+  "category": "Greetings & Phrases",
+  "class_key": "hello",
+  "hindi": "हैलो"
+ },
+ "135": {
+  "gloss": "Help",
+  "category": "Emergency & Health",
+  "class_key": "help",
+  "hindi": "मदद"
+ },
+ "136": {
+  "gloss": "Her",
+  "category": "Pronouns",
+  "class_key": "her",
+  "hindi": "उसका"
+ },
+ "137": {
+  "gloss": "Herself",
+  "category": "Pronouns",
+  "class_key": "herself",
+  "hindi": "खुद"
+ },
+ "138": {
+  "gloss": "Hide",
+  "category": "Actions",
+  "class_key": "hide",
+  "hindi": "छिपाना"
+ },
+ "139": {
+  "gloss": "High",
+  "category": "Descriptions & Other",
+  "class_key": "high",
+  "hindi": "ऊँचा"
+ },
+ "140": {
+  "gloss": "Him",
+  "category": "Pronouns",
+  "class_key": "him",
+  "hindi": "उसे"
+ },
+ "141": {
+  "gloss": "Himself",
+  "category": "Pronouns",
+  "class_key": "himself",
+  "hindi": "खुद"
+ },
+ "142": {
+  "gloss": "His",
+  "category": "Pronouns",
+  "class_key": "his",
+  "hindi": "उसका"
+ },
+ "143": {
+  "gloss": "Hospital",
+  "category": "Emergency & Health",
+  "class_key": "hospital",
+  "hindi": "अस्पताल"
+ },
+ "144": {
+  "gloss": "Hot",
+  "category": "Descriptions & Other",
+  "class_key": "hot",
+  "hindi": "गरम"
+ },
+ "145": {
+  "gloss": "How Are You",
+  "category": "Greetings & Phrases",
+  "class_key": "how_are_you",
+  "hindi": "आप कैसे हैं"
+ },
+ "146": {
+  "gloss": "How Many",
+  "category": "Question Words",
+  "class_key": "how_many",
+  "hindi": "कितने"
+ },
+ "147": {
+  "gloss": "I",
+  "category": "Pronouns",
+  "class_key": "i",
+  "hindi": "मैं"
+ },
+ "148": {
+  "gloss": "I (letter)",
+  "category": "Alphabet",
+  "class_key": "i_alphabet",
+  "hindi": "आई (अक्षर)"
+ },
+ "149": {
+  "gloss": "Ignore",
+  "category": "Actions",
+  "class_key": "ignore",
+  "hindi": "अनदेखा करना"
+ },
+ "150": {
+  "gloss": "Important",
+  "category": "Descriptions & Other",
+  "class_key": "important",
+  "hindi": "महत्वपूर्ण"
+ },
+ "151": {
+  "gloss": "In",
+  "category": "Position & Direction",
+  "class_key": "in",
+  "hindi": "में"
+ },
+ "152": {
+  "gloss": "Indian",
+  "category": "Descriptions & Other",
+  "class_key": "indian",
+  "hindi": "भारतीय"
+ },
+ "153": {
+  "gloss": "Indigo",
+  "category": "Colors",
+  "class_key": "indigo",
+  "hindi": "नील"
+ },
+ "154": {
+  "gloss": "Injury",
+  "category": "Emergency & Health",
+  "class_key": "injury",
+  "hindi": "चोट"
+ },
+ "155": {
+  "gloss": "Intelligent",
+  "category": "Descriptions & Other",
+  "class_key": "intelligent",
+  "hindi": "बुद्धिमान"
+ },
+ "156": {
+  "gloss": "It",
+  "category": "Pronouns",
+  "class_key": "it",
+  "hindi": "यह"
+ },
+ "157": {
+  "gloss": "Itself",
+  "category": "Pronouns",
+  "class_key": "itself",
+  "hindi": "स्वयं"
+ },
+ "158": {
+  "gloss": "J",
+  "category": "Alphabet",
+  "class_key": "j",
+  "hindi": "जे"
+ },
+ "159": {
+  "gloss": "Jealous",
+  "category": "Descriptions & Other",
+  "class_key": "jealous",
+  "hindi": "ईर्ष्यालु"
+ },
+ "160": {
+  "gloss": "K",
+  "category": "Alphabet",
+  "class_key": "k",
+  "hindi": "के"
+ },
+ "161": {
+  "gloss": "Kind",
+  "category": "Descriptions & Other",
+  "class_key": "kind",
+  "hindi": "दयालु"
+ },
+ "162": {
+  "gloss": "L",
+  "category": "Alphabet",
+  "class_key": "l",
+  "hindi": "एल"
+ },
+ "163": {
+  "gloss": "Language",
+  "category": "Descriptions & Other",
+  "class_key": "language",
+  "hindi": "भाषा"
+ },
+ "164": {
+  "gloss": "Laptop",
+  "category": "Objects",
+  "class_key": "laptop",
+  "hindi": "लैपटॉप"
+ },
+ "165": {
+  "gloss": "Light",
+  "category": "Descriptions & Other",
+  "class_key": "light",
+  "hindi": "हल्का"
+ },
+ "166": {
+  "gloss": "Light Green",
+  "category": "Colors",
+  "class_key": "light_green",
+  "hindi": "हल्का हरा"
+ },
+ "167": {
+  "gloss": "Light Pink",
+  "category": "Colors",
+  "class_key": "light_pink",
+  "hindi": "हल्का गुलाबी"
+ },
+ "168": {
+  "gloss": "Long",
+  "category": "Descriptions & Other",
+  "class_key": "long",
+  "hindi": "लंबा"
+ },
+ "169": {
+  "gloss": "Loose",
+  "category": "Descriptions & Other",
+  "class_key": "loose",
+  "hindi": "ढीला"
+ },
+ "170": {
+  "gloss": "Loud",
+  "category": "Descriptions & Other",
+  "class_key": "loud",
+  "hindi": "तेज़ आवाज़"
+ },
+ "171": {
+  "gloss": "Low",
+  "category": "Descriptions & Other",
+  "class_key": "low",
+  "hindi": "नीचा"
+ },
+ "172": {
+  "gloss": "M",
+  "category": "Alphabet",
+  "class_key": "m",
+  "hindi": "एम"
+ },
+ "173": {
+  "gloss": "Majorly",
+  "category": "Descriptions & Other",
+  "class_key": "majorly",
+  "hindi": "मुख्य रूप से"
+ },
+ "174": {
+  "gloss": "Male",
+  "category": "Descriptions & Other",
+  "class_key": "male",
+  "hindi": "पुरुष"
+ },
+ "175": {
+  "gloss": "Me",
+  "category": "Pronouns",
+  "class_key": "me",
+  "hindi": "मुझे"
+ },
+ "176": {
+  "gloss": "Mean",
+  "category": "Descriptions & Other",
+  "class_key": "mean",
+  "hindi": "मतलब"
+ },
+ "177": {
+  "gloss": "Mobile",
+  "category": "Objects",
+  "class_key": "mobile",
+  "hindi": "मोबाइल"
+ },
+ "178": {
+  "gloss": "Monday",
+  "category": "Days",
+  "class_key": "monday",
+  "hindi": "सोमवार"
+ },
+ "179": {
+  "gloss": "Morning",
+  "category": "Time & Frequency",
+  "class_key": "morning",
+  "hindi": "सुबह"
+ },
+ "180": {
+  "gloss": "My",
+  "category": "Pronouns",
+  "class_key": "my",
+  "hindi": "मेरा"
+ },
+ "181": {
+  "gloss": "Myself",
+  "category": "Pronouns",
+  "class_key": "myself",
+  "hindi": "मैं स्वयं"
+ },
+ "182": {
+  "gloss": "N",
+  "category": "Alphabet",
+  "class_key": "n",
+  "hindi": "एन"
+ },
+ "183": {
+  "gloss": "Namaste",
+  "category": "Greetings & Phrases",
+  "class_key": "namaste",
+  "hindi": "नमस्ते"
+ },
+ "184": {
+  "gloss": "Narrow",
+  "category": "Descriptions & Other",
+  "class_key": "narrow",
+  "hindi": "संकरा"
+ },
+ "185": {
+  "gloss": "Natural",
+  "category": "Descriptions & Other",
+  "class_key": "natural",
+  "hindi": "प्राकृतिक"
+ },
+ "186": {
+  "gloss": "Near",
+  "category": "Position & Direction",
+  "class_key": "near",
+  "hindi": "पास"
+ },
+ "187": {
+  "gloss": "Never",
+  "category": "Time & Frequency",
+  "class_key": "never",
+  "hindi": "कभी नहीं"
+ },
+ "188": {
+  "gloss": "New",
+  "category": "Descriptions & Other",
+  "class_key": "new",
+  "hindi": "नया"
+ },
+ "189": {
+  "gloss": "Nice",
+  "category": "Descriptions & Other",
+  "class_key": "nice",
+  "hindi": "बढ़िया"
+ },
+ "190": {
+  "gloss": "Night",
+  "category": "Time & Frequency",
+  "class_key": "night",
+  "hindi": "रात"
+ },
+ "191": {
+  "gloss": "O",
+  "category": "Alphabet",
+  "class_key": "o",
+  "hindi": "ओ"
+ },
+ "192": {
+  "gloss": "Often",
+  "category": "Time & Frequency",
+  "class_key": "often",
+  "hindi": "अक्सर"
+ },
+ "193": {
+  "gloss": "Old",
+  "category": "Descriptions & Other",
+  "class_key": "old",
+  "hindi": "पुराना"
+ },
+ "194": {
+  "gloss": "On",
+  "category": "Position & Direction",
+  "class_key": "on",
+  "hindi": "पर"
+ },
+ "195": {
+  "gloss": "Orange",
+  "category": "Colors",
+  "class_key": "orange",
+  "hindi": "नारंगी"
+ },
+ "196": {
+  "gloss": "Our",
+  "category": "Pronouns",
+  "class_key": "our",
+  "hindi": "हमारा"
+ },
+ "197": {
+  "gloss": "Ourselves",
+  "category": "Pronouns",
+  "class_key": "ourselves",
+  "hindi": "हम स्वयं"
+ },
+ "198": {
+  "gloss": "Out",
+  "category": "Position & Direction",
+  "class_key": "out",
+  "hindi": "बाहर"
+ },
+ "199": {
+  "gloss": "P",
+  "category": "Alphabet",
+  "class_key": "p",
+  "hindi": "पी"
+ },
+ "200": {
+  "gloss": "Pain",
+  "category": "Emergency & Health",
+  "class_key": "pain",
+  "hindi": "दर्द"
+ },
+ "201": {
+  "gloss": "Partly",
+  "category": "Descriptions & Other",
+  "class_key": "partly",
+  "hindi": "आंशिक रूप से"
+ },
+ "202": {
+  "gloss": "Pen",
+  "category": "Objects",
+  "class_key": "pen",
+  "hindi": "कलम"
+ },
+ "203": {
+  "gloss": "Pencil",
+  "category": "Objects",
+  "class_key": "pencil",
+  "hindi": "पेंसिल"
+ },
+ "204": {
+  "gloss": "Pink",
+  "category": "Colors",
+  "class_key": "pink",
+  "hindi": "गुलाबी"
+ },
+ "205": {
+  "gloss": "Please",
+  "category": "Greetings & Phrases",
+  "class_key": "please",
+  "hindi": "कृपया"
+ },
+ "206": {
+  "gloss": "Pleased",
+  "category": "Descriptions & Other",
+  "class_key": "pleased",
+  "hindi": "प्रसन्न"
+ },
+ "207": {
+  "gloss": "Police",
+  "category": "Emergency & Health",
+  "class_key": "police",
+  "hindi": "पुलिस"
+ },
+ "208": {
+  "gloss": "Polite",
+  "category": "Descriptions & Other",
+  "class_key": "polite",
+  "hindi": "विनम्र"
+ },
+ "209": {
+  "gloss": "Poor",
+  "category": "Descriptions & Other",
+  "class_key": "poor",
+  "hindi": "गरीब"
+ },
+ "210": {
+  "gloss": "Powerful",
+  "category": "Descriptions & Other",
+  "class_key": "powerful",
+  "hindi": "शक्तिशाली"
+ },
+ "211": {
+  "gloss": "Practise",
+  "category": "Actions",
+  "class_key": "practise",
+  "hindi": "अभ्यास करना"
+ },
+ "212": {
+  "gloss": "Praise",
+  "category": "Actions",
+  "class_key": "praise",
+  "hindi": "प्रशंसा"
+ },
+ "213": {
+  "gloss": "Projector",
+  "category": "Objects",
+  "class_key": "projector",
+  "hindi": "प्रोजेक्टर"
+ },
+ "214": {
+  "gloss": "Proud",
+  "category": "Descriptions & Other",
+  "class_key": "proud",
+  "hindi": "गर्वित"
+ },
+ "215": {
+  "gloss": "Purple",
+  "category": "Colors",
+  "class_key": "purple",
+  "hindi": "बैंगनी"
+ },
+ "216": {
+  "gloss": "Q",
+  "category": "Alphabet",
+  "class_key": "q",
+  "hindi": "क्यू"
+ },
+ "217": {
+  "gloss": "Quiet",
+  "category": "Descriptions & Other",
+  "class_key": "quiet",
+  "hindi": "शांत"
+ },
+ "218": {
+  "gloss": "R",
+  "category": "Alphabet",
+  "class_key": "r",
+  "hindi": "आर"
+ },
+ "219": {
+  "gloss": "Really",
+  "category": "Descriptions & Other",
+  "class_key": "really",
+  "hindi": "सच में"
+ },
+ "220": {
+  "gloss": "Red",
+  "category": "Colors",
+  "class_key": "red",
+  "hindi": "लाल"
+ },
+ "221": {
+  "gloss": "Rest",
+  "category": "Actions",
+  "class_key": "rest",
+  "hindi": "आराम"
+ },
+ "222": {
+  "gloss": "Rich",
+  "category": "Descriptions & Other",
+  "class_key": "rich",
+  "hindi": "अमीर"
+ },
+ "223": {
+  "gloss": "Ruler",
+  "category": "Objects",
+  "class_key": "ruler",
+  "hindi": "स्केल"
+ },
+ "224": {
+  "gloss": "Run",
+  "category": "Actions",
+  "class_key": "run",
+  "hindi": "दौड़ना"
+ },
+ "225": {
+  "gloss": "S",
+  "category": "Alphabet",
+  "class_key": "s",
+  "hindi": "एस"
+ },
+ "226": {
+  "gloss": "Sad",
+  "category": "Descriptions & Other",
+  "class_key": "sad",
+  "hindi": "उदास"
+ },
+ "227": {
+  "gloss": "Safe",
+  "category": "Emergency & Health",
+  "class_key": "safe",
+  "hindi": "सुरक्षित"
+ },
+ "228": {
+  "gloss": "Saturday",
+  "category": "Days",
+  "class_key": "saturday",
+  "hindi": "शनिवार"
+ },
+ "229": {
+  "gloss": "Shallow",
+  "category": "Descriptions & Other",
+  "class_key": "shallow",
+  "hindi": "उथला"
+ },
+ "230": {
+  "gloss": "Sharpener",
+  "category": "Objects",
+  "class_key": "sharpener",
+  "hindi": "शार्पनर"
+ },
+ "231": {
+  "gloss": "She",
+  "category": "Pronouns",
+  "class_key": "she",
+  "hindi": "वह"
+ },
+ "232": {
+  "gloss": "Short",
+  "category": "Descriptions & Other",
+  "class_key": "short",
+  "hindi": "छोटा"
+ },
+ "233": {
+  "gloss": "Sick",
+  "category": "Emergency & Health",
+  "class_key": "sick",
+  "hindi": "बीमार"
+ },
+ "234": {
+  "gloss": "Sign",
+  "category": "Actions",
+  "class_key": "sign",
+  "hindi": "संकेत"
+ },
+ "235": {
+  "gloss": "Silver",
+  "category": "Colors",
+  "class_key": "silver",
+  "hindi": "चाँदी"
+ },
+ "236": {
+  "gloss": "Sky Blue",
+  "category": "Colors",
+  "class_key": "sky_blue",
+  "hindi": "आसमानी"
+ },
+ "237": {
+  "gloss": "Slow",
+  "category": "Descriptions & Other",
+  "class_key": "slow",
+  "hindi": "धीमा"
+ },
+ "238": {
+  "gloss": "Small / Little",
+  "category": "Descriptions & Other",
+  "class_key": "small_little",
+  "hindi": "छोटा"
+ },
+ "239": {
+  "gloss": "Smart",
+  "category": "Descriptions & Other",
+  "class_key": "smart",
+  "hindi": "चतुर"
+ },
+ "240": {
+  "gloss": "Soft",
+  "category": "Descriptions & Other",
+  "class_key": "soft",
+  "hindi": "मुलायम"
+ },
+ "241": {
+  "gloss": "Soft Speaking",
+  "category": "Descriptions & Other",
+  "class_key": "soft_speaking",
+  "hindi": "धीरे बोलना"
+ },
+ "242": {
+  "gloss": "Sorry",
+  "category": "Greetings & Phrases",
+  "class_key": "sorry",
+  "hindi": "माफ़ कीजिए"
+ },
+ "243": {
+  "gloss": "Special",
+  "category": "Descriptions & Other",
+  "class_key": "special",
+  "hindi": "विशेष"
+ },
+ "244": {
+  "gloss": "Stand",
+  "category": "Actions",
+  "class_key": "stand",
+  "hindi": "खड़ा होना"
+ },
+ "245": {
+  "gloss": "Strong",
+  "category": "Descriptions & Other",
+  "class_key": "strong",
+  "hindi": "मज़बूत"
+ },
+ "246": {
+  "gloss": "Sunday",
+  "category": "Days",
+  "class_key": "sunday",
+  "hindi": "रविवार"
+ },
+ "247": {
+  "gloss": "Swing",
+  "category": "Actions",
+  "class_key": "swing",
+  "hindi": "झूला"
+ },
+ "248": {
+  "gloss": "T",
+  "category": "Alphabet",
+  "class_key": "t",
+  "hindi": "टी"
+ },
+ "249": {
+  "gloss": "Table",
+  "category": "Objects",
+  "class_key": "table",
+  "hindi": "मेज़"
+ },
+ "250": {
+  "gloss": "Tall",
+  "category": "Descriptions & Other",
+  "class_key": "tall",
+  "hindi": "ऊँचा कद"
+ },
+ "251": {
+  "gloss": "Tear",
+  "category": "Actions",
+  "class_key": "tear",
+  "hindi": "फाड़ना"
+ },
+ "252": {
+  "gloss": "Tell",
+  "category": "Actions",
+  "class_key": "tell",
+  "hindi": "बताना"
+ },
+ "253": {
+  "gloss": "Thank You",
+  "category": "Greetings & Phrases",
+  "class_key": "thank_you",
+  "hindi": "धन्यवाद"
+ },
+ "254": {
+  "gloss": "Them",
+  "category": "Pronouns",
+  "class_key": "them",
+  "hindi": "उन्हें"
+ },
+ "255": {
+  "gloss": "Therefore",
+  "category": "Descriptions & Other",
+  "class_key": "therefore",
+  "hindi": "इसलिए"
+ },
+ "256": {
+  "gloss": "They",
+  "category": "Pronouns",
+  "class_key": "they",
+  "hindi": "वे"
+ },
+ "257": {
+  "gloss": "They Themselves",
+  "category": "Pronouns",
+  "class_key": "they_themselves",
+  "hindi": "वे स्वयं"
+ },
+ "258": {
+  "gloss": "Thick",
+  "category": "Descriptions & Other",
+  "class_key": "thick",
+  "hindi": "गाढ़ा"
+ },
+ "259": {
+  "gloss": "Thin",
+  "category": "Descriptions & Other",
+  "class_key": "thin",
+  "hindi": "पतला"
+ },
+ "260": {
+  "gloss": "Things",
+  "category": "Objects",
+  "class_key": "things",
+  "hindi": "चीज़ें"
+ },
+ "261": {
+  "gloss": "Think",
+  "category": "Actions",
+  "class_key": "think",
+  "hindi": "सोचना"
+ },
+ "262": {
+  "gloss": "Thursday",
+  "category": "Days",
+  "class_key": "thursday",
+  "hindi": "गुरुवार"
+ },
+ "263": {
+  "gloss": "Tight",
+  "category": "Descriptions & Other",
+  "class_key": "tight",
+  "hindi": "कसा हुआ"
+ },
+ "264": {
+  "gloss": "Together",
+  "category": "Position & Direction",
+  "class_key": "together",
+  "hindi": "साथ में"
+ },
+ "265": {
+  "gloss": "Tsunami",
+  "category": "Emergency & Health",
+  "class_key": "tsunami",
+  "hindi": "सुनामी"
+ },
+ "266": {
+  "gloss": "Tuesday",
+  "category": "Days",
+  "class_key": "tuesday",
+  "hindi": "मंगलवार"
+ },
+ "267": {
+  "gloss": "U",
+  "category": "Alphabet",
+  "class_key": "u",
+  "hindi": "यू"
+ },
+ "268": {
+  "gloss": "Ugly",
+  "category": "Descriptions & Other",
+  "class_key": "ugly",
+  "hindi": "कुरूप"
+ },
+ "269": {
+  "gloss": "Under",
+  "category": "Position & Direction",
+  "class_key": "under",
+  "hindi": "के नीचे"
+ },
+ "270": {
+  "gloss": "V",
+  "category": "Alphabet",
+  "class_key": "v",
+  "hindi": "वी"
+ },
+ "271": {
+  "gloss": "W",
+  "category": "Alphabet",
+  "class_key": "w",
+  "hindi": "डब्ल्यू"
+ },
+ "272": {
+  "gloss": "Walk",
+  "category": "Actions",
+  "class_key": "walk",
+  "hindi": "चलना"
+ },
+ "273": {
+  "gloss": "Warm",
+  "category": "Descriptions & Other",
+  "class_key": "warm",
+  "hindi": "गुनगुना"
+ },
+ "274": {
+  "gloss": "We",
+  "category": "Pronouns",
+  "class_key": "we",
+  "hindi": "हम"
+ },
+ "275": {
+  "gloss": "Weak",
+  "category": "Descriptions & Other",
+  "class_key": "weak",
+  "hindi": "कमज़ोर"
+ },
+ "276": {
+  "gloss": "Wear",
+  "category": "Actions",
+  "class_key": "wear",
+  "hindi": "पहनना"
+ },
+ "277": {
+  "gloss": "Wednesday",
+  "category": "Days",
+  "class_key": "wednesday",
+  "hindi": "बुधवार"
+ },
+ "278": {
+  "gloss": "Welcome",
+  "category": "Greetings & Phrases",
+  "class_key": "welcome",
+  "hindi": "स्वागत है"
+ },
+ "279": {
+  "gloss": "Wet",
+  "category": "Descriptions & Other",
+  "class_key": "wet",
+  "hindi": "गीला"
+ },
+ "280": {
+  "gloss": "What",
+  "category": "Question Words",
+  "class_key": "what",
+  "hindi": "क्या"
+ },
+ "281": {
+  "gloss": "When",
+  "category": "Question Words",
+  "class_key": "when",
+  "hindi": "कब"
+ },
+ "282": {
+  "gloss": "Where",
+  "category": "Question Words",
+  "class_key": "where",
+  "hindi": "कहाँ"
+ },
+ "283": {
+  "gloss": "Which",
+  "category": "Question Words",
+  "class_key": "which",
+  "hindi": "कौन सा"
+ },
+ "284": {
+  "gloss": "White",
+  "category": "Colors",
+  "class_key": "white",
+  "hindi": "सफ़ेद"
+ },
+ "285": {
+  "gloss": "Whiteboard",
+  "category": "Objects",
+  "class_key": "whiteboard",
+  "hindi": "व्हाइटबोर्ड"
+ },
+ "286": {
+  "gloss": "Who",
+  "category": "Question Words",
+  "class_key": "who",
+  "hindi": "कौन"
+ },
+ "287": {
+  "gloss": "Why",
+  "category": "Question Words",
+  "class_key": "why",
+  "hindi": "क्यों"
+ },
+ "288": {
+  "gloss": "Wide",
+  "category": "Descriptions & Other",
+  "class_key": "wide",
+  "hindi": "चौड़ा"
+ },
+ "289": {
+  "gloss": "With",
+  "category": "Position & Direction",
+  "class_key": "with",
+  "hindi": "के साथ"
+ },
+ "290": {
+  "gloss": "Within",
+  "category": "Position & Direction",
+  "class_key": "within",
+  "hindi": "के भीतर"
+ },
+ "291": {
+  "gloss": "X",
+  "category": "Alphabet",
+  "class_key": "x",
+  "hindi": "एक्स"
+ },
+ "292": {
+  "gloss": "Y",
+  "category": "Alphabet",
+  "class_key": "y",
+  "hindi": "वाई"
+ },
+ "293": {
+  "gloss": "Yellow",
+  "category": "Colors",
+  "class_key": "yellow",
+  "hindi": "पीला"
+ },
+ "294": {
+  "gloss": "You",
+  "category": "Pronouns",
+  "class_key": "you",
+  "hindi": "आप"
+ },
+ "295": {
+  "gloss": "You All",
+  "category": "Pronouns",
+  "class_key": "you_all",
+  "hindi": "आप सब"
+ },
+ "296": {
+  "gloss": "Young",
+  "category": "Descriptions & Other",
+  "class_key": "young",
+  "hindi": "युवा"
+ },
+ "297": {
+  "gloss": "Your",
+  "category": "Pronouns",
+  "class_key": "your",
+  "hindi": "आपका"
+ },
+ "298": {
+  "gloss": "Yourself",
+  "category": "Pronouns",
+  "class_key": "yourself",
+  "hindi": "आप स्वयं"
+ },
+ "299": {
+  "gloss": "Z",
+  "category": "Alphabet",
+  "class_key": "z",
+  "hindi": "ज़ेड"
+ },
+ "300": {
+  "gloss": "Not a sign",
+  "category": "Reject",
+  "class_key": "__reject__",
+  "hindi": "—"
+ }
+}

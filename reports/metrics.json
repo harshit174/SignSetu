@@ -1,0 +1,174 @@
+{
+ "dataset_variant": "VAKSETU-300",
+ "num_classes": 301,
+ "num_sign_classes": 300,
+ "split_sizes": {
+  "train": 41319,
+  "val": 4732,
+  "test": 4732,
+  "test_mvi": 920
+ },
+ "models": {
+  "bigru": {
+   "top1": 0.9859032747777055,
+   "top5": 0.9978312730427239,
+   "macro_f1": 0.987316737878949,
+   "balanced_acc": 0.9865584900915,
+   "top1_tta": 0.9856864020819779,
+   "reject_recall": 0.9338842975206612,
+   "false_reject_rate": 0.002168726957276079,
+   "cross_domain_top1": 0.816304347826087,
+   "cross_domain_top1_tta": 0.8141304347826087,
+   "cross_domain_n": 920,
+   "tta_enabled": false,
+   "params": 1546029,
+   "best_epoch": 110,
+   "train_minutes": 7.68
+  },
+  "transformer": {
+   "top1": 0.987855129039254,
+   "top5": 0.9978312730427239,
+   "macro_f1": 0.9884075374528597,
+   "balanced_acc": 0.9882540598361569,
+   "top1_tta": 0.9872045109520712,
+   "reject_recall": 0.9421487603305785,
+   "false_reject_rate": 0.001734981565820863,
+   "cross_domain_top1": 0.8554347826086957,
+   "cross_domain_top1_tta": 0.8597826086956522,
+   "cross_domain_n": 920,
+   "tta_enabled": false,
+   "params": 2322221,
+   "best_epoch": 171,
+   "train_minutes": 15.49
+  }
+ },
+ "per_category": {
+  "Numbers": 0.9951,
+  "Alphabet": 1.0,
+  "Position & Direction": 0.9954,
+  "Descriptions & Other": 0.9801,
+  "Emergency & Health": 0.993,
+  "Time & Frequency": 1.0,
+  "Greetings & Phrases": 1.0,
+  "Objects": 1.0,
+  "Colors": 0.9941,
+  "Actions": 0.9963,
+  "Days": 1.0,
+  "Pronouns": 0.9597,
+  "Question Words": 1.0
+ },
+ "confused_pairs": [
+  {
+   "true": "Good",
+   "pred": "Nice",
+   "count": 11
+  },
+  {
+   "true": "His",
+   "pred": "Him",
+   "count": 7
+  },
+  {
+   "true": "Nice",
+   "pred": "Good",
+   "count": 5
+  },
+  {
+   "true": "Him",
+   "pred": "His",
+   "count": 2
+  },
+  {
+   "true": "Climb Down",
+   "pred": "Yourself",
+   "count": 1
+  },
+  {
+   "true": "2",
+   "pred": "V",
+   "count": 1
+  },
+  {
+   "true": "Blind",
+   "pred": "She",
+   "count": 1
+  },
+  {
+   "true": "Famous",
+   "pred": "Dead",
+   "count": 1
+  },
+  {
+   "true": "Famous",
+   "pred": "Poor",
+   "count": 1
+  },
+  {
+   "true": "Famous",
+   "pred": "Thin",
+   "count": 1
+  },
+  {
+   "true": "Cool",
+   "pred": "Not a sign",
+   "count": 1
+  },
+  {
+   "true": "Happy",
+   "pred": "Expensive",
+   "count": 1
+  },
+  {
+   "true": "Flat",
+   "pred": "She",
+   "count": 1
+  },
+  {
+   "true": "He",
+   "pred": "Quiet",
+   "count": 1
+  },
+  {
+   "true": "He",
+   "pred": "She",
+   "count": 1
+  }
+ ],
+ "latency": {
+  "torch_cuda_ms": {
+   "mean": 0.6839408699670457,
+   "p95": 0.8961485984400496
+  },
+  "torch_cpu_ms": {
+   "mean": 1.0688168699380185,
+   "p95": 1.392920099715411
+  },
+  "onnx_cpu_ms": {
+   "mean": 0.4959437449906545,
+   "p95": 0.6193177016029949
+  },
+  "holistic_ms_per_frame": 10.442875758326409,
+  "holistic_benchmark_input": "CC BY-SA 4.0 sign-language clip (Wikimedia Commons), 1080p resized to 640 px",
+  "est_fps": 91.41754278848482
+ },
+ "hardware": {
+  "os": "Fedora Linux 44 (KDE Plasma Desktop Edition) (kernel 7.2.13-200.fc44.x86_64)",
+  "cpu": "AMD Ryzen 7 250 w/ Radeon 780M Graphics",
+  "physical_cores": 8,
+  "logical_cores": 16,
+  "ram_gb": 14.9,
+  "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU (8 GB, driver 615.78.08)",
+  "free_disk_gb": 113.4
+ },
+ "extraction": {
+  "clips_total": 95290,
+  "clips_used": 51703,
+  "excluded": {
+   "exact duplicate": 42503,
+   "conflicting labels": 1084
+  },
+  "source": "precomputed features (no video extraction)"
+ },
+ "published_baseline": null,
+ "generated_at": "2026-11-02 15:48:39"
+}

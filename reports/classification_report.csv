@@ -1,0 +1,302 @@
+class_index,key,gloss,category,precision,recall,f1,support
+0,0,0,Numbers,1.0,1.0,1.0,18
+1,1,1,Numbers,1.0,1.0,1.0,27
+2,2,2,Numbers,1.0,0.9642857142857143,0.9818181818181818,28
+3,3,3,Numbers,1.0,1.0,1.0,25
+4,4,4,Numbers,1.0,1.0,1.0,24
+5,5,5,Numbers,1.0,1.0,1.0,17
+6,6,6,Numbers,1.0,1.0,1.0,24
+7,7,7,Numbers,1.0,1.0,1.0,24
+8,8,8,Numbers,1.0,1.0,1.0,5
+9,9,9,Numbers,1.0,1.0,1.0,12
+10,a,A,Alphabet,1.0,1.0,1.0,21
+11,above,Above,Position & Direction,1.0,1.0,1.0,9
+12,abstract,Abstract,Descriptions & Other,1.0,1.0,1.0,11
+13,accessible,Accessible,Descriptions & Other,1.0,1.0,1.0,11
+14,accident,Accident,Emergency & Health,1.0,1.0,1.0,17
+15,afraid,Afraid,Descriptions & Other,1.0,1.0,1.0,8
+16,after,After,Time & Frequency,1.0,1.0,1.0,10
+17,afternoon,Afternoon,Time & Frequency,1.0,1.0,1.0,10
+18,ahead,Ahead,Position & Direction,1.0,1.0,1.0,10
+19,alive,Alive,Emergency & Health,1.0,1.0,1.0,24
+20,already,Already,Time & Frequency,1.0,1.0,1.0,11
+21,alright,Alright,Greetings & Phrases,1.0,1.0,1.0,18
+22,ambulance,Ambulance,Emergency & Health,1.0,1.0,1.0,19
+23,ancient,Ancient,Descriptions & Other,1.0,1.0,1.0,10
+24,angry,Angry,Descriptions & Other,1.0,1.0,1.0,6
+25,another,Another,Position & Direction,1.0,1.0,1.0,10
+26,around,Around,Position & Direction,1.0,1.0,1.0,10
+27,b,B,Alphabet,1.0,1.0,1.0,23
+28,bad,Bad,Descriptions & Other,1.0,1.0,1.0,28
+29,bag,Bag,Objects,1.0,1.0,1.0,10
+30,beautiful,Beautiful,Descriptions & Other,1.0,1.0,1.0,27
+31,before,Before,Time & Frequency,1.0,1.0,1.0,11
+32,behind,Behind,Position & Direction,1.0,1.0,1.0,10
+33,below,Below,Position & Direction,1.0,1.0,1.0,10
+34,besides,Besides,Position & Direction,1.0,1.0,1.0,11
+35,better,Better,Descriptions & Other,1.0,1.0,1.0,10
+36,between,Between,Position & Direction,1.0,1.0,1.0,11
+37,big_large,Big / Large,Descriptions & Other,1.0,1.0,1.0,29
+38,bike,Bike,Objects,1.0,1.0,1.0,9
+39,black,Black,Colors,1.0,1.0,1.0,8
+40,blind,Blind,Emergency & Health,1.0,0.9583333333333334,0.9787234042553191,24
+41,blue,Blue,Colors,1.0,1.0,1.0,8
+42,book,Book,Objects,1.0,1.0,1.0,9
+43,bottle,Bottle,Objects,1.0,1.0,1.0,10
+44,break,Break,Actions,1.0,1.0,1.0,11
+45,broken,Broken,Descriptions & Other,1.0,1.0,1.0,10
+46,bronze,Bronze,Colors,1.0,1.0,1.0,9
+47,brown,Brown,Colors,1.0,1.0,1.0,8
+48,brush,Brush,Objects,1.0,1.0,1.0,11
+49,build,Build,Actions,1.0,1.0,1.0,11
+50,bye,Bye,Greetings & Phrases,1.0,1.0,1.0,21
+51,c,C,Alphabet,1.0,1.0,1.0,21
+52,calculator,Calculator,Objects,1.0,1.0,1.0,10
+53,cancel,Cancel,Actions,1.0,1.0,1.0,10
+54,cap,Cap,Objects,1.0,1.0,1.0,10
+55,car,Car,Objects,1.0,1.0,1.0,10
+56,careful,Careful,Descriptions & Other,1.0,1.0,1.0,10
+57,carry,Carry,Actions,1.0,1.0,1.0,11
+58,chair,Chair,Objects,1.0,1.0,1.0,10
+59,cheap,Cheap,Descriptions & Other,1.0,1.0,1.0,8
+60,chew,Chew,Actions,1.0,1.0,1.0,11
+61,clean,Clean,Descriptions & Other,1.0,1.0,1.0,4
+62,clearly,Clearly,Descriptions & Other,1.0,1.0,1.0,11
+63,climb_down,Climb Down,Actions,1.0,0.9,0.9473684210526315,10
+64,climb_up,Climb Up,Actions,1.0,1.0,1.0,11
+65,cold,Cold,Descriptions & Other,1.0,1.0,1.0,27
+66,colors,Colors,Colors,1.0,1.0,1.0,8
+67,comfortable,Comfortable,Descriptions & Other,1.0,1.0,1.0,10
+68,confident,Confident,Descriptions & Other,1.0,1.0,1.0,7
+69,cool,Cool,Descriptions & Other,0.9583333333333334,0.9583333333333334,0.9583333333333334,24
+70,coward,Coward,Descriptions & Other,1.0,1.0,1.0,6
+71,cpr,CPR,Emergency & Health,1.0,1.0,1.0,19
+72,cruel,Cruel,Descriptions & Other,1.0,1.0,1.0,10
+73,cupboard,Cupboard,Objects,1.0,1.0,1.0,10
+74,curved,Curved,Descriptions & Other,1.0,1.0,1.0,26
+75,cute,Cute,Descriptions & Other,1.0,1.0,1.0,8
+76,cyclone,Cyclone,Emergency & Health,1.0,1.0,1.0,18
+77,d,D,Alphabet,1.0,1.0,1.0,26
+78,danger,Danger,Emergency & Health,1.0,1.0,1.0,15
+79,dangerous,Dangerous,Emergency & Health,1.0,1.0,1.0,10
+80,dark_green,Dark Green,Colors,1.0,1.0,1.0,9
+81,dark_pink,Dark Pink,Colors,1.0,1.0,1.0,10
+82,dead,Dead,Emergency & Health,0.95,1.0,0.9743589743589743,19
+83,deaf,Deaf,Emergency & Health,1.0,0.96,0.9795918367346939,25
+84,deep,Deep,Descriptions & Other,1.0,1.0,1.0,27
+85,delicious,Delicious,Descriptions & Other,1.0,1.0,1.0,10
+86,dim,Dim,Descriptions & Other,1.0,1.0,1.0,10
+87,dirty,Dirty,Descriptions & Other,1.0,1.0,1.0,10
+88,doctor,Doctor,Emergency & Health,1.0,1.0,1.0,13
+89,door,Door,Objects,1.0,1.0,1.0,9
+90,dream,Dream,Actions,1.0,1.0,1.0,5
+91,dry,Dry,Descriptions & Other,1.0,1.0,1.0,26
+92,e,E,Alphabet,0.96,1.0,0.9795918367346939,24
+93,earthquake,Earthquake,Emergency & Health,1.0,1.0,1.0,16
+94,easy,Easy,Descriptions & Other,1.0,1.0,1.0,11
+95,emergency,Emergency,Emergency & Health,1.0,1.0,1.0,16
+96,equal,Equal,Descriptions & Other,1.0,1.0,1.0,11
+97,eraser,Eraser,Objects,1.0,1.0,1.0,10
+98,evening,Evening,Time & Frequency,1.0,1.0,1.0,8
+99,examine,Examine,Actions,1.0,1.0,1.0,10
+100,excited,Excited,Descriptions & Other,1.0,1.0,1.0,10
+101,exit,Exit,Actions,1.0,1.0,1.0,16
+102,expensive,Expensive,Descriptions & Other,0.9629629629629629,1.0,0.9811320754716981,26
+103,f,F,Alphabet,1.0,1.0,1.0,26
+104,famous,Famous,Descriptions & Other,0.9545454545454546,0.875,0.9130434782608695,24
+105,fan,Fan,Objects,1.0,1.0,1.0,8
+106,fast,Fast,Descriptions & Other,0.9444444444444444,1.0,0.9714285714285714,17
+107,fat,Fat,Descriptions & Other,1.0,1.0,1.0,11
+108,female,Female,Descriptions & Other,1.0,1.0,1.0,16
+109,fire,Fire,Emergency & Health,1.0,1.0,1.0,17
+110,fire_extinguisher,Fire Extinguisher,Emergency & Health,1.0,1.0,1.0,16
+111,flat,Flat,Descriptions & Other,0.96,0.96,0.96,25
+112,flood,Flood,Emergency & Health,1.0,1.0,1.0,17
+113,frankly,Frankly,Descriptions & Other,1.0,1.0,1.0,28
+114,friday,Friday,Days,1.0,1.0,1.0,13
+115,from,From,Position & Direction,1.0,1.0,1.0,16
+116,funny,Funny,Descriptions & Other,1.0,1.0,1.0,11
+117,g,G,Alphabet,1.0,1.0,1.0,18
+118,golden,Golden,Colors,1.0,1.0,1.0,7
+119,good,Good,Descriptions & Other,0.6875,0.5,0.5789473684210527,22
+120,good_afternoon,Good Afternoon,Greetings & Phrases,1.0,1.0,1.0,10
+121,good_evening,Good Evening,Greetings & Phrases,1.0,1.0,1.0,10
+122,good_morning,Good Morning,Greetings & Phrases,0.8888888888888888,1.0,0.9411764705882353,8
+123,good_night,Good Night,Greetings & Phrases,1.0,1.0,1.0,28
+124,green,Green,Colors,1.0,1.0,1.0,9
+125,grey,Grey,Colors,1.0,1.0,1.0,9
+126,h,H,Alphabet,1.0,1.0,1.0,27
+127,handsome,Handsome,Descriptions & Other,1.0,1.0,1.0,10
+128,happy,Happy,Descriptions & Other,1.0,0.9565217391304348,0.9777777777777777,23
+129,hard,Hard,Descriptions & Other,1.0,1.0,1.0,10
+130,hardworking,Hardworking,Descriptions & Other,1.0,1.0,1.0,10
+131,he,He,Pronouns,1.0,0.9166666666666666,0.9565217391304348,24
+132,healthy,Healthy,Emergency & Health,1.0,1.0,1.0,12
+133,heavy,Heavy,Descriptions & Other,0.9545454545454546,1.0,0.9767441860465116,21
+134,hello,Hello,Greetings & Phrases,1.0,1.0,1.0,22
+135,help,Help,Emergency & Health,1.0,1.0,1.0,17
+136,her,Her,Pronouns,1.0,0.96,0.9795918367346939,25
+137,herself,Herself,Pronouns,0.96,1.0,0.9795918367346939,24
+138,hide,Hide,Actions,1.0,1.0,1.0,10
+139,high,High,Descriptions & Other,1.0,1.0,1.0,26
+140,him,Him,Pronouns,0.46153846153846156,0.75,0.5714285714285714,8
+141,himself,Himself,Pronouns,1.0,1.0,1.0,23
+142,his,His,Pronouns,0.3333333333333333,0.125,0.18181818181818182,8
+143,hospital,Hospital,Emergency & Health,1.0,1.0,1.0,16
+144,hot,Hot,Descriptions & Other,0.9411764705882353,0.9411764705882353,0.9411764705882353,17
+145,how_are_you,How Are You,Greetings & Phrases,1.0,1.0,1.0,25
+146,how_many,How Many,Question Words,1.0,1.0,1.0,16
+147,i,I,Pronouns,1.0,1.0,1.0,20
+148,i_alphabet,I (letter),Alphabet,1.0,1.0,1.0,20
+149,ignore,Ignore,Actions,1.0,1.0,1.0,16
+150,important,Important,Descriptions & Other,1.0,1.0,1.0,9
+151,in,In,Position & Direction,1.0,1.0,1.0,16
+152,indian,Indian,Descriptions & Other,1.0,1.0,1.0,24
+153,indigo,Indigo,Colors,1.0,1.0,1.0,9
+154,injury,Injury,Emergency & Health,1.0,1.0,1.0,18
+155,intelligent,Intelligent,Descriptions & Other,1.0,1.0,1.0,9
+156,it,It,Pronouns,1.0,0.9523809523809523,0.975609756097561,21
+157,itself,Itself,Pronouns,1.0,1.0,1.0,26
+158,j,J,Alphabet,1.0,1.0,1.0,26
+159,jealous,Jealous,Descriptions & Other,1.0,1.0,1.0,5
+160,k,K,Alphabet,1.0,1.0,1.0,22
+161,kind,Kind,Descriptions & Other,1.0,1.0,1.0,5
+162,l,L,Alphabet,1.0,1.0,1.0,16
+163,language,Language,Descriptions & Other,1.0,1.0,1.0,26
+164,laptop,Laptop,Objects,1.0,1.0,1.0,10
+165,light,Light,Descriptions & Other,1.0,1.0,1.0,26
+166,light_green,Light Green,Colors,1.0,1.0,1.0,8
+167,light_pink,Light Pink,Colors,1.0,1.0,1.0,8
+168,long,Long,Descriptions & Other,1.0,1.0,1.0,11
+169,loose,Loose,Descriptions & Other,1.0,1.0,1.0,26
+170,loud,Loud,Descriptions & Other,1.0,1.0,1.0,26
+171,low,Low,Descriptions & Other,1.0,1.0,1.0,24
+172,m,M,Alphabet,1.0,1.0,1.0,17
+173,majorly,Majorly,Descriptions & Other,1.0,1.0,1.0,10
+174,male,Male,Descriptions & Other,1.0,1.0,1.0,24
+175,me,Me,Pronouns,1.0,1.0,1.0,14
+176,mean,Mean,Descriptions & Other,1.0,0.96,0.9795918367346939,25
+177,mobile,Mobile,Objects,1.0,1.0,1.0,8
+178,monday,Monday,Days,1.0,1.0,1.0,12
+179,morning,Morning,Time & Frequency,1.0,1.0,1.0,25
+180,my,My,Pronouns,0.92,0.9583333333333334,0.9387755102040817,24
+181,myself,Myself,Pronouns,1.0,1.0,1.0,27
+182,n,N,Alphabet,1.0,1.0,1.0,24
+183,namaste,Namaste,Greetings & Phrases,1.0,1.0,1.0,11
+184,narrow,Narrow,Descriptions & Other,0.9565217391304348,1.0,0.9777777777777777,22
+185,natural,Natural,Descriptions & Other,1.0,1.0,1.0,11
+186,near,Near,Position & Direction,1.0,1.0,1.0,15
+187,never,Never,Time & Frequency,1.0,1.0,1.0,9
+188,new,New,Descriptions & Other,1.0,1.0,1.0,10
+189,nice,Nice,Descriptions & Other,0.6071428571428571,0.7727272727272727,0.68,22
+190,night,Night,Time & Frequency,1.0,1.0,1.0,7
+191,o,O,Alphabet,1.0,1.0,1.0,15
+192,often,Often,Time & Frequency,1.0,1.0,1.0,9
+193,old,Old,Descriptions & Other,1.0,1.0,1.0,25
+194,on,On,Position & Direction,1.0,0.9285714285714286,0.9629629629629629,14
+195,orange,Orange,Colors,1.0,1.0,1.0,7
+196,our,Our,Pronouns,1.0,1.0,1.0,26
+197,ourselves,Ourselves,Pronouns,1.0,1.0,1.0,6
+198,out,Out,Position & Direction,1.0,1.0,1.0,15
+199,p,P,Alphabet,1.0,1.0,1.0,25
+200,pain,Pain,Emergency & Health,1.0,1.0,1.0,17
+201,partly,Partly,Descriptions & Other,1.0,1.0,1.0,9
+202,pen,Pen,Objects,1.0,1.0,1.0,8
+203,pencil,Pencil,Objects,1.0,1.0,1.0,10
+204,pink,Pink,Colors,1.0,1.0,1.0,8
+205,please,Please,Greetings & Phrases,1.0,1.0,1.0,10
+206,pleased,Pleased,Descriptions & Other,0.9473684210526315,1.0,0.972972972972973,18
+207,police,Police,Emergency & Health,1.0,1.0,1.0,18
+208,polite,Polite,Descriptions & Other,1.0,1.0,1.0,11
+209,poor,Poor,Descriptions & Other,0.9565217391304348,0.9166666666666666,0.9361702127659575,24
+210,powerful,Powerful,Descriptions & Other,1.0,1.0,1.0,10
+211,practise,Practise,Actions,1.0,1.0,1.0,11
+212,praise,Praise,Actions,1.0,1.0,1.0,10
+213,projector,Projector,Objects,1.0,1.0,1.0,10
+214,proud,Proud,Descriptions & Other,1.0,1.0,1.0,8
+215,purple,Purple,Colors,1.0,1.0,1.0,7
+216,q,Q,Alphabet,1.0,1.0,1.0,26
+217,quiet,Quiet,Descriptions & Other,0.9565217391304348,1.0,0.9777777777777777,22
+218,r,R,Alphabet,1.0,1.0,1.0,27
+219,really,Really,Descriptions & Other,1.0,1.0,1.0,8
+220,red,Red,Colors,1.0,1.0,1.0,8
+221,rest,Rest,Actions,1.0,1.0,1.0,11
+222,rich,Rich,Descriptions & Other,1.0,1.0,1.0,27
+223,ruler,Ruler,Objects,1.0,1.0,1.0,10
+224,run,Run,Actions,1.0,1.0,1.0,10
+225,s,S,Alphabet,1.0,1.0,1.0,27
+226,sad,Sad,Descriptions & Other,0.9230769230769231,1.0,0.96,24
+227,safe,Safe,Emergency & Health,1.0,1.0,1.0,12
+228,saturday,Saturday,Days,1.0,1.0,1.0,16
+229,shallow,Shallow,Descriptions & Other,1.0,1.0,1.0,26
+230,sharpener,Sharpener,Objects,1.0,1.0,1.0,10
+231,she,She,Pronouns,0.88,0.9565217391304348,0.9166666666666666,23
+232,short,Short,Descriptions & Other,1.0,1.0,1.0,22
+233,sick,Sick,Emergency & Health,1.0,0.9615384615384616,0.9803921568627451,26
+234,sign,Sign,Actions,1.0,1.0,1.0,27
+235,silver,Silver,Colors,1.0,1.0,1.0,8
+236,sky_blue,Sky Blue,Colors,1.0,1.0,1.0,10
+237,slow,Slow,Descriptions & Other,1.0,1.0,1.0,21
+238,small_little,Small / Little,Descriptions & Other,0.9565217391304348,1.0,0.9777777777777777,22
+239,smart,Smart,Descriptions & Other,1.0,1.0,1.0,9
+240,soft,Soft,Descriptions & Other,1.0,0.9615384615384616,0.9803921568627451,26
+241,soft_speaking,Soft Speaking,Descriptions & Other,1.0,1.0,1.0,11
+242,sorry,Sorry,Greetings & Phrases,1.0,1.0,1.0,10
+243,special,Special,Descriptions & Other,1.0,1.0,1.0,11
+244,stand,Stand,Actions,1.0,1.0,1.0,11
+245,strong,Strong,Descriptions & Other,1.0,1.0,1.0,10
+246,sunday,Sunday,Days,1.0,1.0,1.0,16
+247,swing,Swing,Actions,1.0,1.0,1.0,10
+248,t,T,Alphabet,1.0,1.0,1.0,17
+249,table,Table,Objects,1.0,1.0,1.0,9
+250,tall,Tall,Descriptions & Other,1.0,1.0,1.0,7
+251,tear,Tear,Actions,1.0,1.0,1.0,10
+252,tell,Tell,Actions,1.0,1.0,1.0,11
+253,thank_you,Thank You,Greetings & Phrases,1.0,1.0,1.0,10
+254,them,Them,Pronouns,1.0,1.0,1.0,5
+255,therefore,Therefore,Descriptions & Other,1.0,1.0,1.0,11
+256,they,They,Pronouns,0.9565217391304348,1.0,0.9777777777777777,22
+257,they_themselves,They Themselves,Pronouns,1.0,1.0,1.0,10
+258,thick,Thick,Descriptions & Other,0.9629629629629629,1.0,0.9811320754716981,26
+259,thin,Thin,Descriptions & Other,0.96,0.9230769230769231,0.9411764705882353,26
+260,things,Things,Objects,1.0,1.0,1.0,10
+261,think,Think,Actions,1.0,1.0,1.0,7
+262,thursday,Thursday,Days,1.0,1.0,1.0,12
+263,tight,Tight,Descriptions & Other,1.0,1.0,1.0,26
+264,together,Together,Position & Direction,1.0,1.0,1.0,15
+265,tsunami,Tsunami,Emergency & Health,1.0,1.0,1.0,7
+266,tuesday,Tuesday,Days,1.0,1.0,1.0,11
+267,u,U,Alphabet,1.0,1.0,1.0,18
+268,ugly,Ugly,Descriptions & Other,0.9583333333333334,0.9583333333333334,0.9583333333333334,24
+269,under,Under,Position & Direction,1.0,1.0,1.0,15
+270,v,V,Alphabet,0.9375,1.0,0.967741935483871,15
+271,w,W,Alphabet,1.0,1.0,1.0,24
+272,walk,Walk,Actions,1.0,1.0,1.0,7
+273,warm,Warm,Descriptions & Other,1.0,1.0,1.0,23
+274,we,We,Pronouns,1.0,0.96,0.9795918367346939,25
+275,weak,Weak,Descriptions & Other,1.0,0.96,0.9795918367346939,25
+276,wear,Wear,Actions,1.0,1.0,1.0,10
+277,wednesday,Wednesday,Days,1.0,1.0,1.0,15
+278,welcome,Welcome,Greetings & Phrases,1.0,1.0,1.0,10
+279,wet,Wet,Descriptions & Other,1.0,1.0,1.0,26
+280,what,What,Question Words,1.0,1.0,1.0,16
+281,when,When,Question Words,1.0,1.0,1.0,16
+282,where,Where,Question Words,1.0,1.0,1.0,15
+283,which,Which,Question Words,1.0,1.0,1.0,16
+284,white,White,Colors,1.0,0.6666666666666666,0.8,3
+285,whiteboard,Whiteboard,Objects,1.0,1.0,1.0,10
+286,who,Who,Question Words,1.0,1.0,1.0,15
+287,why,Why,Question Words,1.0,1.0,1.0,16
+288,wide,Wide,Descriptions & Other,1.0,1.0,1.0,24
+289,with,With,Position & Direction,1.0,1.0,1.0,14
+290,within,Within,Position & Direction,1.0,1.0,1.0,15
+291,x,X,Alphabet,1.0,1.0,1.0,17
+292,y,Y,Alphabet,1.0,1.0,1.0,26
+293,yellow,Yellow,Colors,1.0,1.0,1.0,8
+294,you,You,Pronouns,0.96,0.96,0.96,25
+295,you_all,You All,Pronouns,1.0,1.0,1.0,22
+296,young,Young,Descriptions & Other,1.0,0.9545454545454546,0.9767441860465116,22
+297,your,Your,Pronouns,1.0,1.0,1.0,9
+298,yourself,Yourself,Pronouns,0.8333333333333334,1.0,0.9090909090909091,5
+299,z,Z,Alphabet,1.0,1.0,1.0,26
+300,__reject__,Not a sign,Reject,0.9344262295081968,0.9421487603305785,0.9382716049382716,121
