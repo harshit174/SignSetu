@@ -101,10 +101,17 @@ DISCLAIMER = (f"SignSetu recognises {N_SIGNS} isolated Indian Sign Language sign
               "never stored; only predicted words, confidence scores and saved transcripts are logged to the local PostgreSQL database.")
 
 
+@st.cache_resource
+def _db_state():
+    return {"down_until": 0.0}
+
+
 def db(sql, params=None, fetch=False):
-    """Run one statement; never raises. Returns rows (fetch) / True, or None when the DB is unavailable."""
+    """Run one statement; never raises. Returns rows (fetch) / True, or None when the DB is unavailable.
+    After a failure the DB is skipped for 20 s so a dead database cannot slow every rerun."""
     pool = get_pool()
-    if pool is None:
+    state = _db_state()
+    if pool is None or time.time() < state["down_until"]:
         st.session_state["db_offline"] = True
         return None
     try:
@@ -115,6 +122,7 @@ def db(sql, params=None, fetch=False):
         return rows
     except Exception as e:
         st.session_state["db_offline"] = True
+        state["down_until"] = time.time() + 20
         log(f"DB error: {str(e)[:200]}")
         return None
 
