@@ -1,0 +1,15 @@
+.venv/
+data/
+logs/
+.env
+__pycache__/
+.ipynb_checkpoints/
+models/smoke/
+reports/smoke/
+assets/demo_smoke.gif
+graphify-out/
+.graphify*/
+Thumbs.db
+desktop.ini
+.DS_Store
+assets/figures_smoke/
