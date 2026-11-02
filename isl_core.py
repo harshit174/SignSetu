@@ -421,11 +421,11 @@ class LiveExtractor:
     """One Holistic instance per camera/video session. Frames must already be in the dataset orientation
     (mirrored) and RGB."""
 
-    def __init__(self):
+    def __init__(self, model_complexity=1):
         import mediapipe as mp
         self._mp = mp
         self.h = mp.solutions.holistic.Holistic(
-            static_image_mode=False, model_complexity=1, smooth_landmarks=True, refine_face_landmarks=False,
+            static_image_mode=False, model_complexity=int(model_complexity), smooth_landmarks=True, refine_face_landmarks=False,
             enable_segmentation=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
         self.ref = None
         self.scale = None
@@ -440,7 +440,8 @@ class LiveExtractor:
     def process(self, rgb):
         """Returns (base (252,), info dict, mediapipe results)."""
         res = self.h.process(rgb)
-        if res.face_landmarks is not None:
+        face_now = res.face_landmarks is not None
+        if face_now:
             f = _arr(res.face_landmarks)
             self.ref = f[FACE_REF_IDX].copy()
             self.scale = float(np.linalg.norm(f[FACE_SCALE_IDX[0], :2] - f[FACE_SCALE_IDX[1], :2]))
@@ -462,9 +463,23 @@ class LiveExtractor:
             p = _arr(res.pose_landmarks)
             mid_y = 0.5 * ((p[11, 1] + p[12, 1]) / 2 + (p[23, 1] + p[24, 1]) / 2)
             low = all(w[1] > mid_y for w in wrists)
-        info = dict(n_hands=n_hands, speed=speed, low=low,
+        info = dict(n_hands=n_hands, speed=speed, low=low, face=face_now, face_scale=float(self.scale or 0.0),
+                    hands_seen=int(ha is not None) + int(hb is not None),
                     active=bool(n_hands and (not low or speed > 0.02)))
         return base, info, res
+
+
+def frame_quality(rgb, info):
+    """Live coaching signals: list of (label, ok, hint). Cheap enough to run on every frame."""
+    small = rgb[::16, ::16]
+    luma = float((0.299 * small[..., 0] + 0.587 * small[..., 1] + 0.114 * small[..., 2]).mean())
+    sc = info.get("face_scale", 0.0)
+    out = [("Face", bool(info.get("face")), "Face the camera - SignSetu measures hand position relative to your face"),
+           ("Light", 60 <= luma <= 225, "Too dark - add light in front of you" if luma < 60 else "Too bright - avoid a window behind you"),
+           ("Distance", (not info.get("face")) or 0.035 <= sc <= 0.16,
+            "Move back a little - keep head to waist in frame" if sc > 0.16 else "Move closer to the camera"),
+           ("Hands", info.get("hands_seen", 0) > 0, "Raise your hands into the frame to start signing")]
+    return out
 
 
 class Segmenter:
@@ -478,7 +493,7 @@ class Segmenter:
     def reset(self):
         self.state = "IDLE"
         self.ring, self.buf = [], []
-        self.run = self.idle = self.cool = 0
+        self.run = self.idle = self.cool = self.gap = 0
 
     def update(self, base, active):
         """Feed one frame. Returns a finished segment (n,252) or None."""
@@ -489,7 +504,13 @@ class Segmenter:
             return None
         if self.state == "IDLE":
             self.ring = (self.ring + [base])[-self.preroll:]
-            self.run = self.run + 1 if active else 0
+            # tolerate a single dropped detection: hand tracking flickers on real webcams
+            if active:
+                self.run, self.gap = self.run + 1, 0
+            else:
+                self.gap = getattr(self, "gap", 0) + 1
+                if self.gap > 1:
+                    self.run = 0
             if self.run >= self.start_frames:
                 self.state, self.buf, self.idle = "SIGNING", list(self.ring), 0
             return None
@@ -546,6 +567,39 @@ class Predictor:
             p = 0.5 * (p + self._run(base_to_features(flip_base(base_seq))[None])[0])
         return p
 
+    def predict_segment(self, seg):
+        """Variable-length live segment (n, 252) -> probabilities, averaged over temporal crops.
+        Live segmentation never cuts a sign exactly where the dataset clips start/end, so we score the
+        hand span plus versions trimmed by 10-20% at either end in one batch (about 2 ms on CPU)."""
+        seg = np.asarray(seg, dtype=np.float32)
+        has = np.abs(seg).sum(1) > 0
+        if has.sum() >= 3:
+            nz = np.where(has)[0]
+            seg = seg[max(0, nz[0] - 2): nz[-1] + 3]
+        n = len(seg)
+        crops = [resample_nearest(seg, T)]
+        for a, b in ((0.1, 0.0), (0.0, 0.1), (0.1, 0.1), (0.2, 0.0), (0.0, 0.2)):
+            s0, s1 = int(round(a * n)), n - int(round(b * n))
+            if s1 - s0 >= 8:
+                crops.append(resample_nearest(seg[s0:s1], T))
+        X = np.stack(crops)
+        p = self._run(base_to_features(X)).mean(0)
+        if self.tta:
+            p = 0.5 * (p + self._run(base_to_features(flip_base(X))).mean(0))
+        return p
+
+
+def focus_probs(probs, allowed):
+    """Restrict a probability vector to `allowed` class indices (the reject class should be included) and
+    renormalise. Used by the app's situation presets: choosing among ~40 likely signs instead of 300."""
+    if allowed is None:
+        return probs
+    out = np.zeros_like(probs)
+    idx = np.asarray(sorted(allowed), dtype=int)
+    out[idx] = probs[idx]
+    tot = out.sum()
+    return out / tot if tot > 0 else probs
+
 
 # ----------------------------------------------------------------------------------------------
 # PostgreSQL
@@ -568,7 +622,7 @@ def make_pool():
     return ConnectionPool(conninfo, min_size=1, max_size=4, open=True, timeout=5)
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS schema_meta (key text PRIMARY KEY, value text NOT NULL);
 CREATE TABLE IF NOT EXISTS vocabulary (
@@ -613,6 +667,9 @@ CREATE TABLE IF NOT EXISTS transcripts (
   id bigserial PRIMARY KEY, session_id uuid REFERENCES app_sessions(id) ON DELETE CASCADE,
   text text NOT NULL, language text CHECK (language IN ('en','hi')), spoken boolean NOT NULL DEFAULT false,
   created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS practice_attempts (
+  id bigserial PRIMARY KEY, sign_key text NOT NULL, gloss text NOT NULL, score real, success boolean,
+  source text, created_at timestamptz NOT NULL DEFAULT now());
 """
 
 
@@ -658,16 +715,27 @@ def speak_english(text):
     return True
 
 
-def hindi_mp3(text):
-    """Hindi speech via gTTS (needs internet). Returns mp3 bytes or None."""
+_MP3_CACHE = {}
+
+
+def tts_mp3(text, lang="hi"):
+    """Speech via gTTS (needs internet). Returns mp3 bytes or None; results are cached in memory."""
+    key = (lang, text.strip())
+    if key in _MP3_CACHE:
+        return _MP3_CACHE[key]
     try:
         import io
         from gtts import gTTS
         buf = io.BytesIO()
-        gTTS(text=text, lang="hi").write_to_fp(buf)
-        return buf.getvalue()
+        gTTS(text=text, lang=lang, timeout=4).write_to_fp(buf)
+        _MP3_CACHE[key] = buf.getvalue()
+        return _MP3_CACHE[key]
     except Exception:
         return None
+
+
+def hindi_mp3(text):
+    return tts_mp3(text, "hi")
 
 
 def config_hash(obj):
