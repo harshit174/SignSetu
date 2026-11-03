@@ -1,0 +1,3 @@
+# Tooling for contributors: run the test-suite with `pytest`.
+-r requirements.txt
+pytest==8.3.4

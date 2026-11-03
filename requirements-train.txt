@@ -1,0 +1,21 @@
+# Everything needed to run SignSetu.ipynb and retrain the models, on top of the app runtime.
+-r requirements.txt
+
+# torch 2.8.0+cu128: RTX 50-series GPUs (Blackwell, sm_120) need CUDA 12.8+ kernels; torch 2.5.1/cu124 has none.
+# On macOS this index has no wheel and pip falls back to PyPI. With uv add: --index-strategy unsafe-best-match
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+h5py==3.12.1
+# pyarrow>=18 requires numpy 2, which mediapipe 0.10.21 cannot use
+pyarrow==17.0.0
+scikit-learn==1.5.2
+matplotlib==3.9.2
+tqdm==4.67.1
+imageio==2.36.0
+onnx==1.17.0
+psutil==6.1.0
+requests==2.32.3
+ipywidgets==8.1.5
+ipykernel==6.29.5
+notebook==7.2.2
+nbconvert==7.16.4

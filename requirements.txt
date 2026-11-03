@@ -1,30 +1,22 @@
---extra-index-url https://download.pytorch.org/whl/cu128
-# torch 2.8.0+cu128: the RTX 5050 (Blackwell, sm_120) needs CUDA 12.8+ kernels; torch 2.5.1/cu124 has none.
+# Runtime dependencies for the Streamlit app (portable: macOS, Linux, Windows; no GPU required).
+# Retraining the models needs more: see requirements-train.txt.
+#
+# torch 2.8.0 installs the default wheel for your OS. For a smaller CPU-only build on Linux/Windows use:
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.8.0
-# mediapipe 0.10.21 still exposes mediapipe.solutions.holistic and needs numpy<2
+# mediapipe 0.10.21 still exposes mediapipe.solutions.holistic and needs numpy<2 (it also provides OpenCV)
 mediapipe==0.10.21
 numpy==1.26.4
-h5py==3.12.1
+onnxruntime==1.20.1
 streamlit==1.40.2
-# pyarrow>=18 requires numpy 2, which mediapipe 0.10.21 cannot use
-pyarrow==17.0.0
+pandas==2.2.3
+plotly==5.24.1
+pillow==10.4.0
+python-dotenv==1.0.1
+# storage: PostgreSQL is optional, the app falls back to SQLite
 psycopg[binary]==3.2.3
 psycopg-pool==3.2.4
-pandas==2.2.3
-scikit-learn==1.5.2
-matplotlib==3.9.2
-plotly==5.24.1
-tqdm==4.67.1
-ipywidgets==8.1.5
-ipykernel==6.29.5
-notebook==7.2.2
-nbconvert==7.16.4
-python-dotenv==1.0.1
-imageio==2.36.0
-pillow==10.4.0
-onnx==1.17.0
-onnxruntime==1.20.1
+# speech: browser voices are the default; these are the server-side fallbacks
 pyttsx3==2.98
 gTTS==2.5.3
-psutil==6.1.0
-requests==2.32.3
+# Optional AI sentence polish (set ANTHROPIC_API_KEY): pip install anthropic
