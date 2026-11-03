@@ -17,6 +17,7 @@ import math
 import os
 import subprocess
 import sys
+import threading
 import time
 
 import numpy as np
@@ -417,6 +418,11 @@ def hands_to_base(hand_a, hand_b, ref, scale):
     return out
 
 
+def camera_backend(cv2, platform=None):
+    """Native OpenCV capture backend for the OS. V4L2 is Linux-only: forcing it everywhere left macOS without a camera."""
+    return {"win32": cv2.CAP_DSHOW, "darwin": cv2.CAP_AVFOUNDATION}.get(platform or sys.platform, cv2.CAP_V4L2)
+
+
 class LiveExtractor:
     """One Holistic instance per camera/video session. Frames must already be in the dataset orientation
     (mirrored) and RGB."""
@@ -494,6 +500,7 @@ class Segmenter:
         self.state = "IDLE"
         self.ring, self.buf = [], []
         self.run = self.idle = self.cool = self.gap = 0
+        self.wait_rest = False
 
     def update(self, base, active):
         """Feed one frame. Returns a finished segment (n,252) or None."""
@@ -501,6 +508,11 @@ class Segmenter:
             self.cool -= 1
             if self.cool == 0:
                 self.state = "IDLE"
+            return None
+        if self.wait_rest:      # after an early commit: ignore the rest of that sign until the hands settle
+            self.idle = 0 if active else self.idle + 1
+            if self.idle >= max(3, self.idle_end // 2):
+                self.wait_rest, self.state, self.idle, self.run, self.ring = False, "IDLE", 0, 0, []
             return None
         if self.state == "IDLE":
             self.ring = (self.ring + [base])[-self.preroll:]
@@ -524,6 +536,59 @@ class Segmenter:
                 return seg
             self.state = "IDLE"
         return None
+
+
+    def commit_early(self):
+        """Real-time mode: hand back the sign so far as a finished segment because the classifier is already sure, then
+        wait for the hands to rest so the tail of the same sign is not read as a second one."""
+        seg = np.stack(self.buf)
+        self.buf, self.ring, self.run, self.idle = [], [], 0, 0
+        self.state, self.wait_rest = "PREDICTING", True
+        return seg
+
+
+class LatestFrame:
+    """Reads the camera on its own thread and always serves the newest frame. Without this, a processing loop slower than the
+    camera falls behind a growing queue (OpenCV's AVFoundation backend ignores CAP_PROP_BUFFERSIZE), so the video and the
+    translation lag further and further behind the signer."""
+
+    def __init__(self, cap):
+        self.cap, self.frame, self.n, self.t, self.ok, self._stop = cap, None, 0, 0.0, True, False
+        self._seen = 0
+        self._lock = threading.Lock()
+        self._th = threading.Thread(target=self._run, daemon=True)
+        self._th.start()
+
+    def _run(self):
+        while not self._stop:
+            ok, frame = self.cap.read()
+            with self._lock:
+                self.ok = ok
+                if ok:
+                    self.frame, self.n, self.t = frame, self.n + 1, time.time()
+            if not ok:
+                time.sleep(0.01)
+
+    def isOpened(self):
+        return self.cap.isOpened()
+
+    def read(self, timeout=1.0):
+        """(ok, newest frame). Waits for a frame newer than the last one returned; never returns a stale backlog."""
+        end = time.time() + timeout
+        while time.time() < end:
+            with self._lock:
+                if self.n != self._seen and self.frame is not None:
+                    self._seen = self.n
+                    return True, self.frame
+                if not self.ok:
+                    return False, None
+            time.sleep(0.002)
+        return False, None
+
+    def release(self):
+        self._stop = True
+        self._th.join(timeout=1.0)
+        self.cap.release()
 
 
 # ----------------------------------------------------------------------------------------------
@@ -697,20 +762,38 @@ def ensure_schema(conn):
 # Speech
 # ----------------------------------------------------------------------------------------------
 _SPEAK_CHILD = (
-    "import sys\n"
-    "t=sys.argv[1]\n"
-    "try:\n"
-    "    import pyttsx3\n"
-    "    e=pyttsx3.init(); e.setProperty('rate',165); e.say(t); e.runAndWait()\n"
-    "except Exception:\n"
-    "    import subprocess; subprocess.run(['espeak-ng','-s','150',t])\n")
+    "import re, shutil, subprocess, sys\n"
+    "t, lang, wpm = sys.argv[1], sys.argv[2], int(sys.argv[3])\n"
+    "if sys.platform == 'darwin' and shutil.which('say'):\n"
+    "    out = subprocess.run(['say', '-v', '?'], capture_output=True, text=True).stdout\n"
+    "    want = 'hi_IN' if lang == 'hi' else 'en_IN'\n"
+    "    ms = (re.match(r'^(.+?)\\s{2,}([a-z]{2}_[A-Z]{2})\\s', l) for l in out.splitlines())\n"
+    "    names = [m.group(1) for m in ms if m and m.group(2) == want]\n"
+    "    best = next((n for n in names if re.search('premium|enhanced', n, re.I)), None) or next(\n"
+    "        (n for n in ('Tara', 'Isha', 'Rishi', 'Aman', 'Lekha') if n in names), names[0] if names else None)\n"
+    "    subprocess.run(['say'] + (['-v', best] if best else []) + ['-r', str(wpm), t])\n"
+    "else:\n"
+    "    try:\n"
+    "        import pyttsx3\n"
+    "        e = pyttsx3.init(); e.setProperty('rate', wpm)\n"
+    "        vs = e.getProperty('voices')\n"
+    "        good = [v for v in vs if re.search('natural|neural|enhanced|premium|india', v.name, re.I)]\n"
+    "        if good: e.setProperty('voice', good[0].id)\n"
+    "        e.say(t); e.runAndWait()\n"
+    "    except Exception:\n"
+    "        subprocess.run(['espeak-ng', '-s', str(wpm), t])\n")
 
 
-def speak_english(text):
-    """Speak offline in a detached child process so the UI loop never blocks."""
+def can_speak_local(lang="en"):
+    """Offline server voices exist for English everywhere (pyttsx3/espeak) and for Hindi on macOS (Lekha)."""
+    return lang != "hi" or sys.platform == "darwin"
+
+
+def speak_english(text, lang="en", rate=1.0):
+    """Speak offline in a detached child process so the UI loop never blocks. rate 1.0 is a calm 170 words/minute."""
     if not text.strip():
         return False
-    subprocess.Popen([sys.executable, "-c", _SPEAK_CHILD, text], stdout=subprocess.DEVNULL,
+    subprocess.Popen([sys.executable, "-c", _SPEAK_CHILD, text, lang, str(int(170 * rate))], stdout=subprocess.DEVNULL,
                      stderr=subprocess.DEVNULL, start_new_session=True)
     return True
 

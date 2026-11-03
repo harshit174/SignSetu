@@ -326,7 +326,7 @@ def polish_with_claude(glosses, draft_en, timeout=8.0):
 # ----------------------------------------------------------------------------------------------
 SCENARIOS = {
     "Everyday": dict(
-        icon="💬", blurb="Greetings, people and feelings for daily conversation.",
+        blurb="Greetings, people and feelings for daily conversation.",
         keys=["hello", "namaste", "bye", "welcome", "thank_you", "please", "sorry", "good_morning", "good_afternoon",
               "good_evening", "good_night", "how_are_you", "alright", "i", "me", "my", "you", "your", "he", "she",
               "we", "they", "happy", "sad", "angry", "afraid", "excited", "good", "bad", "nice", "what", "where",
@@ -338,7 +338,7 @@ SCENARIOS = {
                  ("Please speak slowly and face me.", "कृपया धीरे बोलिए और मेरी तरफ़ देखिए।"),
                  ("Thank you for your patience.", "आपके धैर्य के लिए धन्यवाद।")]),
     "Hospital": dict(
-        icon="🏥", blurb="Clinic visits: symptoms, pain and finding the doctor.",
+        blurb="Clinic visits: symptoms, pain and finding the doctor.",
         keys=["hello", "namaste", "please", "thank_you", "sorry", "i", "me", "my", "you", "doctor", "hospital", "pain",
               "sick", "injury", "healthy", "help", "emergency", "where", "when", "what", "how_many", "hot", "cold",
               "weak", "strong", "rest", "examine", "deaf", "blind", "careful", "alright", "afraid", "morning",
@@ -348,7 +348,7 @@ SCENARIOS = {
                  ("I am allergic to some medicines.", "मुझे कुछ दवाओं से एलर्जी है।"),
                  ("Please write the prescription clearly.", "कृपया पर्ची साफ़-साफ़ लिखिए।")]),
     "Emergency": dict(
-        icon="🚨", blurb="Disasters and accidents: get help fast. Triggers the SOS alert.",
+        blurb="Disasters and accidents: get help fast. Triggers the SOS alert.",
         keys=["help", "emergency", "ambulance", "police", "fire", "fire_extinguisher", "accident", "danger",
               "dangerous", "earthquake", "flood", "cyclone", "tsunami", "injury", "pain", "cpr", "doctor",
               "hospital", "careful", "safe", "dead", "alive", "where", "please", "i", "me", "my", "you", "he",
@@ -357,7 +357,7 @@ SCENARIOS = {
         phrases=[("Call 112 now!", "अभी 112 पर कॉल कीजिए!"), ("I am deaf. Please help me.", "मैं बधिर हूँ। कृपया मेरी मदद कीजिए।"),
                  ("Someone is injured.", "कोई घायल है।"), ("Where is the exit?", "बाहर निकलने का रास्ता कहाँ है?")]),
     "Bank & Office": dict(
-        icon="🏦", blurb="Counters and offices: introductions, numbers and requests.",
+        blurb="Counters and offices: introductions, numbers and requests.",
         keys=["hello", "namaste", "good_morning", "good_afternoon", "please", "thank_you", "sorry", "welcome", "i",
               "me", "my", "you", "your", "deaf", "help", "slow", "clearly", "soft_speaking", "important", "cancel",
               "when", "what", "where", "which", "how_many", "laptop", "mobile", "pen", "table", "chair", "door",
@@ -368,7 +368,7 @@ SCENARIOS = {
                  ("Can you show me on the screen?", "क्या आप मुझे स्क्रीन पर दिखा सकते हैं?"),
                  ("I will come back on Monday.", "मैं सोमवार को वापस आऊँगा/आऊँगी।")]),
     "Classroom": dict(
-        icon="🎓", blurb="School and college: objects, questions and colours.",
+        blurb="School and college: objects, questions and colours.",
         keys=["hello", "good_morning", "please", "thank_you", "sorry", "i", "me", "my", "you", "your", "book", "pen",
               "pencil", "eraser", "ruler", "sharpener", "whiteboard", "projector", "laptop", "calculator", "bag",
               "chair", "table", "where", "what", "why", "which", "who", "easy", "hard", "think", "tell", "practise",
@@ -377,7 +377,7 @@ SCENARIOS = {
         phrases=[("Please repeat that.", "कृपया इसे दोबारा बताइए।"), ("I did not understand.", "मुझे समझ नहीं आया।"),
                  ("Please turn on the captions.", "कृपया कैप्शन चालू कीजिए।"), ("Can I have the notes?", "क्या मुझे नोट्स मिल सकते हैं?")]),
     "Shopping": dict(
-        icon="🛍️", blurb="Markets and shops: colours, sizes and prices.",
+        blurb="Markets and shops: colours, sizes and prices.",
         keys=["hello", "namaste", "please", "thank_you", "bye", "i", "my", "you", "bag", "cap", "bottle", "book",
               "mobile", "red", "blue", "green", "yellow", "black", "white", "pink", "orange", "purple", "brown",
               "cheap", "expensive", "big_large", "small_little", "new", "old", "good", "nice", "beautiful", "which",
@@ -392,13 +392,12 @@ ALL_SIGNS = "All 300 signs"
 # ----------------------------------------------------------------------------------------------
 # Encouragement engine (Learn & Practice)
 # ----------------------------------------------------------------------------------------------
-PRAISE = ["Perfect sign! 🎉", "Nailed it! 🔥", "Beautiful handshape! ✨", "That's exactly right! 🙌",
-          "You're a natural! 🌟", "Spot on! 💯", "Fantastic! Keep the streak going! 🚀"]
-CLOSE = ["So close! One more try 💪", "Almost there — you've got this!", "Good effort! Small tweak and it's yours."]
-RETRY = ["Every expert was once a beginner. Try again! 🌱", "Mistakes are how we learn — go again!",
-         "Let's give it another shot — watch the reference first. 👀"]
-LEVELS = [(0, "Beginner", "🌱"), (50, "Explorer", "🧭"), (150, "Communicator", "💬"), (300, "Fluent Signer", "🤟"),
-          (600, "Setu Champion", "🏆")]
+PRAISE = ["That sign was clear and well formed.", "Exactly right.", "Clean handshape — well done.", "Correct, and nicely paced.",
+          "A confident sign.", "Spot on.", "Well done. Keep the streak going."]
+CLOSE = ["Close. One more try.", "Almost there — a small adjustment will do it.", "Good effort. Watch the reference once more."]
+RETRY = ["Take another look at the reference, then try again.", "Slow down and give the sign room — go again.",
+         "Watch the reference first, then sign it once more."]
+LEVELS = [(0, "Beginner"), (50, "Explorer"), (150, "Communicator"), (300, "Fluent signer"), (600, "Setu champion")]
 
 
 def level_for(xp):

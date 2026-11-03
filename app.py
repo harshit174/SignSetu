@@ -37,7 +37,7 @@ load_dotenv(ROOT / ".env")
 import isl_core
 import isl_lang
 
-st.set_page_config(page_title="SignSetu — ISL Translator", page_icon="🤟", layout="wide",
+st.set_page_config(page_title="SignSetu — ISL Translator", page_icon=str(ROOT / "assets" / "favicon.png"), layout="wide",
                    initial_sidebar_state="expanded")
 
 CKPT = ROOT / "models" / "signsetu_transformer.pt"
@@ -47,73 +47,14 @@ DEMO = ROOT / "models" / "demo_samples.npz"
 METRICS = ROOT / "reports" / "metrics.json"
 CLASS_REPORT = ROOT / "reports" / "classification_report.csv"
 
-# light theme tokens (kept in sync with .streamlit/config.toml)
-BG, PANEL, SOFT, BORDER, TEXT, MUTED = "#F6F7FB", "#FFFFFF", "#F1F4F9", "#E3E7EF", "#0F172A", "#64748B"
-SAFFRON, SAFFRON_DK, INDIGO, GREEN, AMBER, RED = "#F97316", "#C2410C", "#4F46E5", "#059669", "#D97706", "#DC2626"
-PLOT = dict(template="plotly_white", paper_bgcolor=PANEL, plot_bgcolor=PANEL, font=dict(color=TEXT, family="Inter"))
+# Parchment palette (kept in sync with assets/theme.css and .streamlit/config.toml)
+BG, PANEL, SOFT, BORDER, TEXT, MUTED = "#f0eee6", "#faf9f5", "#e3dacc", "#cccbc8", "#141413", "#5f5e59"
+INK, INK2, CLAY, CLAY_DEEP = "#141413", "#3d3d3a", "#d97757", "#c6613f"
+PLOT = dict(template=None, paper_bgcolor=PANEL, plot_bgcolor=PANEL, font=dict(color=TEXT, family="Inter"),
+            xaxis=dict(gridcolor=BORDER, linecolor=BORDER), yaxis=dict(gridcolor=BORDER, linecolor=BORDER))
 
-st.markdown(f"""
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-html, body, [class*="css"], .stMarkdown, button, input, textarea {{ font-family: 'Inter','Noto Sans Devanagari','Segoe UI',system-ui,sans-serif; }}
-.block-container {{ padding-top: 4.2rem; max-width: 1400px; }}
-.mono {{ font-family: 'JetBrains Mono', Consolas, monospace; }}
-.hi {{ font-family: 'Noto Sans Devanagari','Inter',sans-serif; }}
-.card {{ background:{PANEL}; border:1px solid {BORDER}; border-radius:16px; padding:16px 18px; margin-bottom:12px;
-        box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 16px rgba(15,23,42,.04); }}
-.card.soft {{ background:{SOFT}; box-shadow:none; }}
-.hero {{ background: linear-gradient(120deg, #FFF7ED 0%, #FFFFFF 45%, #EEF2FF 100%); border:1px solid {BORDER};
-         border-radius:20px; padding:22px 26px; margin-bottom:14px; }}
-.hero h1 {{ margin:0; font-size:34px; font-weight:800; letter-spacing:-.02em; color:{TEXT}; }}
-.hero h1 span {{ background: linear-gradient(90deg, {SAFFRON}, {INDIGO}); -webkit-background-clip:text; background-clip:text; color:transparent; }}
-.hero .tag {{ color:{MUTED}; font-size:16px; margin-top:2px; }}
-.chip {{ display:inline-block; background:{PANEL}; border:1px solid {BORDER}; border-radius:999px; padding:4px 12px;
-        margin:8px 6px 0 0; font-size:12.5px; color:{MUTED}; }}
-.chip b {{ color:{TEXT}; font-weight:600; }}
-.dot {{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }}
-.pill {{ display:inline-block; border-radius:999px; padding:4px 12px; font-size:12px; font-weight:700; letter-spacing:.04em; color:#fff; }}
-.label {{ color:{MUTED}; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }}
-.pred-word {{ font-size:42px; font-weight:800; color:{SAFFRON_DK}; line-height:1.1; letter-spacing:-.01em; }}
-.pred-hi {{ font-size:26px; color:{INDIGO}; font-weight:600; }}
-.sentence {{ font-size:26px; font-weight:700; color:{TEXT}; line-height:1.3; }}
-.sentence-hi {{ font-size:21px; color:{INDIGO}; font-weight:600; margin-top:4px; }}
-.muted {{ color:{MUTED}; }}
-.bar-wrap {{ background:{SOFT}; border-radius:6px; height:8px; width:100%; overflow:hidden; }}
-.bar {{ height:8px; border-radius:6px; background:{SAFFRON}; }}
-.kpi {{ font-size:28px; font-weight:800; color:{TEXT}; }}
-.gloss {{ display:inline-block; background:#FFF7ED; color:{SAFFRON_DK}; border:1px solid #FED7AA; border-radius:8px;
-          padding:3px 10px; margin:3px 4px 3px 0; font-weight:700; font-size:13px; letter-spacing:.03em; }}
-.coach {{ display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 2px; }}
-.coach span {{ border-radius:999px; padding:3px 11px; font-size:12.5px; font-weight:600; }}
-.coach .ok {{ background:#ECFDF5; color:{GREEN}; border:1px solid #A7F3D0; }}
-.coach .bad {{ background:#FEF2F2; color:{RED}; border:1px solid #FECACA; }}
-.hint {{ color:{AMBER}; font-size:13.5px; font-weight:600; margin-top:4px; }}
-.sos {{ background: linear-gradient(90deg,#DC2626,#EA580C); color:#fff; border-radius:16px; padding:16px 20px; margin-bottom:12px;
-        animation: pulse 1.2s ease-in-out infinite; }}
-.sos h3 {{ color:#fff; margin:0 0 4px 0; font-size:24px; }}
-@keyframes pulse {{ 0%,100% {{ box-shadow:0 0 0 0 rgba(220,38,38,.45); }} 50% {{ box-shadow:0 0 0 12px rgba(220,38,38,0); }} }}
-.usecase {{ min-height:150px; }}
-.usecase .ic {{ font-size:30px; }}
-.usecase h4 {{ margin:6px 0 4px 0; }}
-.bubble {{ border-radius:16px; padding:10px 14px; margin:6px 0; max-width:85%; }}
-.bubble.signer {{ background:#FFF7ED; border:1px solid #FED7AA; }}
-.bubble.speaker {{ background:#EEF2FF; border:1px solid #C7D2FE; margin-left:auto; }}
-.bubble .who {{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:{MUTED}; }}
-.result-ok {{ background:#ECFDF5; border:1px solid #A7F3D0; }}
-.result-bad {{ background:#FFFBEB; border:1px solid #FDE68A; }}
-.big-score {{ font-size:46px; font-weight:800; }}
-.xpbar {{ background:{SOFT}; border-radius:999px; height:10px; overflow:hidden; }}
-.xpbar div {{ height:10px; border-radius:999px; background: linear-gradient(90deg,{SAFFRON},{INDIGO}); }}
-.st-key-page [role="radiogroup"] {{ gap:6px; border-bottom:1px solid {BORDER}; padding-bottom:10px; flex-wrap:wrap; }}
-.st-key-page label {{ background:{PANEL}; border:1px solid {BORDER}; border-radius:10px; padding:6px 14px; margin:0; cursor:pointer; }}
-.st-key-page label > div:first-child {{ display:none; }}
-.st-key-page label:has(input:checked) {{ border-color:{SAFFRON}; background:#FFF7ED; }}
-.st-key-page label:has(input:checked) p {{ color:{SAFFRON_DK}; font-weight:700; }}
-.top5 {{ display:flex; align-items:center; gap:10px; margin:5px 0; font-size:14px; }}
-.top5 .n {{ width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
-.top5 .b {{ flex:1; }} .top5 .p {{ width:56px; text-align:right; color:{MUTED}; }}
-[data-testid="stSidebar"] {{ border-right:1px solid {BORDER}; }}
-</style>""", unsafe_allow_html=True)
+st.markdown(f"<style>{(ROOT / 'assets' / 'theme.css').read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
+SPEECH_JS = (ROOT / "assets" / "speech.js").read_text(encoding="utf-8")
 
 
 def log(msg):
@@ -127,7 +68,7 @@ def esc(s):
 # ---------------------------------------------------------------------------------------------- resources
 if not CKPT.exists():
     st.markdown("<div class='card' style='max-width:520px;margin:15vh auto;text-align:center'>"
-                "<div style='font-size:42px'>🤟</div><h3>Model not found</h3>"
+                "<div class='eyebrow'>Setup</div><h3>Model not found</h3>"
                 "<p class='muted'>Open <b>SignSetu.ipynb</b> and <b>Run All</b>.</p></div>", unsafe_allow_html=True)
     st.stop()
 
@@ -295,9 +236,8 @@ def log_prediction(source, probs, accepted, n_frames, lm_ms, model_ms, corrected
 
 # ---------------------------------------------------------------------------------------------- drawing helpers
 def pill(state):
-    colors = {"IDLE": MUTED, "READY": MUTED, "SIGNING": GREEN, "PREDICTING": AMBER, "LOW CONFIDENCE": RED,
-              "RECORDING": RED, "GET READY": INDIGO}
-    return f"<span class='pill' style='background:{colors.get(state, MUTED)}'>{esc(state)}</span>"
+    kind = {"SIGNING": "on", "RECORDING": "on", "PREDICTING": "half", "GET READY": "half", "LOW CONFIDENCE": "half"}.get(state, "")
+    return f"<span class='state {kind}'>{esc(state)}</span>"
 
 
 def top5_html(probs):
@@ -305,24 +245,24 @@ def top5_html(probs):
     for i in np.argsort(-probs)[:5]:
         p = float(probs[i])
         rows.append(f"<div class='top5'><span class='n'>{esc(GLOSS[i])}</span><span class='b'><div class='bar-wrap'>"
-                    f"<div class='bar' style='width:{p*100:.0f}%;background:{SAFFRON if i == np.argmax(probs) else '#CBD5E1'}'></div></div>"
+                    f"<div class='bar' style='width:{p*100:.0f}%;background:{INK if i == np.argmax(probs) else BORDER}'></div></div>"
                     f"</span><span class='p mono'>{p*100:.1f}%</span></div>")
     return "".join(rows)
 
 
 def pred_card(probs, hi_on, accepted=None, latency=None):
     if probs is None:
-        return ("<div class='card'><div class='label'>Latest sign</div><div class='pred-word' style='color:#CBD5E1'>—</div>"
+        return ("<div class='card'><div class='label'>Latest sign</div><div class='pred-word' style='color:#cccbc8'>—</div>"
                 "<div class='muted'>Perform a sign and SignSetu will translate it.</div></div>")
     i = int(np.argmax(probs)); p = float(probs[i])
     word = "No sign detected" if i == REJ else GLOSS[i]
     hi = f"<div class='pred-hi hi'>{esc(HINDI[i])}</div>" if hi_on and i != REJ else ""
     lat = f" · {latency:.0f} ms" if latency is not None else ""
-    col = GREEN if accepted else AMBER
+    col = INK if accepted else '#87867f'
     verdict = "added to sentence" if accepted else "not sure — see suggestions"
     return (f"<div class='card'><div class='label'>Latest sign{lat}</div><div class='pred-word'>{esc(word)}</div>{hi}"
             f"<div class='bar-wrap' style='margin-top:10px'><div class='bar' style='width:{p*100:.0f}%;background:{col}'></div></div>"
-            f"<div class='mono muted' style='margin-top:4px;font-size:13px'>confidence {p*100:.1f}% · {verdict}</div></div>")
+            f"<div class='mono muted' style='margin-top:4px;font-size:13px'>confidence {p*100:.1f}% — {verdict}</div></div>")
 
 
 def skeleton_canvas(seq252, caption=None, size=(480, 320)):
@@ -333,13 +273,13 @@ def skeleton_canvas(seq252, caption=None, size=(480, 320)):
     im = Image.new("RGB", (W, H), SOFT); dr = ImageDraw.Draw(im)
     ox, oy, sc = W // 2, int(H * 0.22), H / 7.0
     fr = H * 0.13
-    dr.ellipse([ox - fr * 0.8, oy - fr * 1.3, ox + fr * 0.8, oy + fr * 1.4], outline="#CBD5E1", width=2, fill="#FFFFFF")
+    dr.ellipse([ox - fr * 0.8, oy - fr * 1.3, ox + fr * 0.8, oy + fr * 1.4], outline=BORDER, width=2, fill=PANEL)
     for e in (-0.45, 0.45):
-        dr.ellipse([ox + e * fr - 4, oy - fr * 0.4 - 4, ox + e * fr + 4, oy - fr * 0.4 + 4], fill="#94A3B8")
-    dr.line([ox - fr * 0.9, oy + fr * 2.0, ox - fr * 2.6, oy + fr * 2.6], fill="#CBD5E1", width=3)
-    dr.line([ox + fr * 0.9, oy + fr * 2.0, ox + fr * 2.6, oy + fr * 2.6], fill="#CBD5E1", width=3)
+        dr.ellipse([ox + e * fr - 4, oy - fr * 0.4 - 4, ox + e * fr + 4, oy - fr * 0.4 + 4], fill="#87867f")
+    dr.line([ox - fr * 0.9, oy + fr * 2.0, ox - fr * 2.6, oy + fr * 2.6], fill=BORDER, width=3)
+    dr.line([ox + fr * 0.9, oy + fr * 2.0, ox + fr * 2.6, oy + fr * 2.6], fill=BORDER, width=3)
     pts = np.asarray(seq252, dtype=np.float32).reshape(4, 21, 3)
-    for blk, col in ((2, INDIGO), (3, SAFFRON)):
+    for blk, col in ((2, INK), (3, CLAY_DEEP)):
         h = pts[blk]
         if np.abs(h).sum() == 0:
             continue
@@ -374,9 +314,9 @@ def draw_landmarks(rgb, res):
     if res.pose_landmarks is not None:
         du.draw_landmarks(rgb, res.pose_landmarks, sol.POSE_CONNECTIONS, du.DrawingSpec((200, 205, 215), 1, 1), du.DrawingSpec((200, 205, 215), 1, 1))
     if res.left_hand_landmarks is not None:
-        du.draw_landmarks(rgb, res.left_hand_landmarks, sol.HAND_CONNECTIONS, du.DrawingSpec(_rgb(INDIGO), 2, 3), du.DrawingSpec(_rgb(INDIGO), 2, 2))
+        du.draw_landmarks(rgb, res.left_hand_landmarks, sol.HAND_CONNECTIONS, du.DrawingSpec(_rgb(INK), 2, 3), du.DrawingSpec(_rgb(INK), 2, 2))
     if res.right_hand_landmarks is not None:
-        du.draw_landmarks(rgb, res.right_hand_landmarks, sol.HAND_CONNECTIONS, du.DrawingSpec(_rgb(SAFFRON), 2, 3), du.DrawingSpec(_rgb(SAFFRON), 2, 2))
+        du.draw_landmarks(rgb, res.right_hand_landmarks, sol.HAND_CONNECTIONS, du.DrawingSpec(_rgb(CLAY_DEEP), 2, 3), du.DrawingSpec(_rgb(CLAY_DEEP), 2, 2))
     return rgb
 
 
@@ -390,14 +330,14 @@ def show_frame(ph, rgb, q=70):
     """Push a frame inline (base64 JPEG inside the websocket message). st.image would register a media file per frame
     that the browser must fetch over HTTP; under load most of those fetches are dropped and the preview stutters."""
     b64 = base64.b64encode(jpeg(rgb, q)).decode()
-    ph.markdown(f"<img src='data:image/jpeg;base64,{b64}' style='width:100%;border-radius:14px;display:block'/>",
+    ph.markdown(f"<img src='data:image/jpeg;base64,{b64}' style='width:100%;border-radius:16px;display:block;border:1px solid #cccbc8'/>",
                 unsafe_allow_html=True)
 
 
 def coach_html(checks):
     chips = "".join(f"<span class='{'ok' if ok else 'bad'}'>{'✓' if ok else '✕'} {esc(lbl)}</span>" for lbl, ok, _ in checks)
     hint = next((h for _, ok, h in checks if not ok), None)
-    return f"<div class='coach'>{chips}</div>" + (f"<div class='hint'>💡 {esc(hint)}</div>" if hint else "")
+    return f"<div class='coach'>{chips}</div>" + (f"<div class='hint'>{esc(hint)}</div>" if hint else "")
 
 
 # ---------------------------------------------------------------------------------------------- state + sidebar
@@ -427,10 +367,10 @@ def go_demo(scen):
 
 
 with st.sidebar:
-    st.markdown(f"<div style='font-size:22px;font-weight:800'>🤟 Sign<span style='color:{SAFFRON}'>Setu</span></div>"
-                f"<div class='muted' style='font-size:13px;margin-bottom:8px'>ISL → Text &amp; Speech</div>", unsafe_allow_html=True)
+    st.markdown("<div class='wordmark'>SignSetu</div>"
+                "<div class='muted' style='font:400 13px Inter;margin:4px 0 16px'>Indian Sign Language to text and speech</div>", unsafe_allow_html=True)
     scenario = st.selectbox("Situation", SCEN_NAMES, key="scenario",
-                            format_func=lambda s: s if s == isl_lang.ALL_SIGNS else f"{isl_lang.SCENARIOS[s]['icon']} {s}",
+                            
                             help="Focus recognition on the signs that matter in this situation. Choosing among ~40 likely "
                                  "signs instead of 300 makes live recognition far more reliable.")
     if scenario != isl_lang.ALL_SIGNS:
@@ -444,18 +384,25 @@ with st.sidebar:
         sim_pick = st.selectbox("Replay", sim_opts, key="sim_pick",
                                 help="Scripted conversations rebuilt from held-out test clips and pushed through the exact live pipeline.")
     mode = st.radio("Recognition mode", ["Auto-segment", "Push-to-sign"], horizontal=True)
-    st.markdown("**Speech**")
+    instant = st.toggle("Instant mode", True, disabled=mode == "Push-to-sign",
+                        help="Translate while you are still signing: a word is committed as soon as the model has been very sure "
+                             "for three checks in a row, instead of waiting for the sign to end. On held-out clips this commits "
+                             "about 60% of the way through a sign with 99.5% precision. Signs it is unsure about still finish normally.")
+    st.markdown("<div class='label' style='margin:12px 0 4px'>Speech</div>", unsafe_allow_html=True)
     voice_mode = st.radio("Voice", ["Browser (instant)", "Server"], horizontal=True,
                           help="Browser voice speaks on the viewer's device with zero delay. Server uses pyttsx3/espeak "
                                "(English, offline) or Google TTS (Hindi, needs internet).")
     speech_lang = st.radio("Language", ["English", "Hindi", "Both"], horizontal=True)
+    voice_rate = st.slider("Speaking pace", 0.7, 1.2, 0.95, 0.05,
+                           help="Slower is clearer. The browser picks the most natural voice installed on your device; "
+                                "Microsoft Edge ships \"Natural\" voices and macOS offers Enhanced ones under System Settings → Accessibility → Spoken Content.")
     auto_speak = st.toggle("Auto-speak each sign", True)
     hi_on = st.toggle("Hindi captions", True)
     with st.expander("Advanced"):
         engine_label = st.selectbox("Inference engine", engines)
         thr = st.slider("Confidence threshold", 0.30, 0.95, 0.50, 0.01)
         margin = st.slider("Min. top-1 vs top-2 margin", 0.0, 0.4, 0.10, 0.01)
-        idle_end = st.slider("Idle frames to end a sign", 4, 30, 10)
+        idle_end = st.slider("Idle frames to end a sign", 4, 30, 8)
         cap_secs = st.slider("Push-to-sign capture (s)", 1.5, 5.0, 3.0, 0.5)
         fast_mp = st.toggle("Fast landmark model (lighter CPU)", False, help="MediaPipe Holistic complexity 0 instead of 1.")
         show_lm = st.toggle("Show landmarks", True)
@@ -496,41 +443,18 @@ def say(en, hi=None, interrupt=False):
         parts = [(en or hi, "en-IN")]
     if voice_mode.startswith("Server"):
         for text, lang in parts:
-            if lang == "hi-IN":
+            if lang == "hi-IN" and not isl_core.can_speak_local("hi"):
                 mp3 = isl_core.tts_mp3(text, "hi")
                 if mp3:
                     SPEECH.audio(mp3, format="audio/mp3", autoplay=True)
                     continue
-                text = en
-            isl_core.speak_english(text)
+                text, lang = en, "en-IN"
+            isl_core.speak_english(text, lang[:2], voice_rate)
         return
     payload = json.dumps([{"text": t, "lang": l, "fallback": en} for t, l in parts])
+    opts = json.dumps({"rate": voice_rate, "interrupt": bool(interrupt)})
     with SPEECH.container():
-        components.html(f"""<script>
-/* {uuid.uuid4().hex} */
-(function() {{
-  const W = window.parent, synth = W.speechSynthesis; if (!synth) return;
-  const items = {payload};
-  const run = () => {{
-    const voices = synth.getVoices();
-    {'synth.cancel();' if interrupt else ''}
-    for (const it of items) {{
-      const pref = it.lang.slice(0, 2).toLowerCase();
-      let v = voices.find(v => v.lang.replace('_', '-').toLowerCase() === it.lang.toLowerCase())
-           || voices.find(v => v.lang.toLowerCase().startsWith(pref));
-      let text = it.text;
-      if (!v && pref === 'hi') {{ text = it.fallback; v = voices.find(v => v.lang.toLowerCase().startsWith('en')); }}
-      const u = new W.SpeechSynthesisUtterance(text);
-      if (v) {{ u.voice = v; u.lang = v.lang; }} else {{ u.lang = it.lang; }}
-      u.rate = 1.0; u.pitch = 1.0;
-      synth.speak(u);
-    }}
-  }};
-  if (synth.getVoices().length) run();
-  else {{ let done = false; const go = () => {{ if (!done) {{ done = true; run(); }} }};
-         synth.addEventListener('voiceschanged', go, {{once: true}}); setTimeout(go, 400); }}
-}})();
-</script>""", height=0)
+        components.html(f"<script>/* {uuid.uuid4().hex} */\n{SPEECH_JS.replace('__ITEMS__', payload).replace('__OPTS__', opts)}</script>", height=0)
 
 
 def sentence():
@@ -546,17 +470,17 @@ def sentence():
 top1 = METR["models"]["transformer"]["top1"] * 100 if METR else None
 cross = METR["models"]["transformer"]["cross_domain_top1"] * 100 if METR else None
 focus_txt = f"{len(ALLOWED) - 1} signs · {scenario}" if ALLOWED else f"all {N_SIGNS} signs"
-st.markdown(f"""<div class='hero'>
-<h1>Sign<span>Setu</span> <span style='font-size:20px;color:{MUTED};-webkit-text-fill-color:{MUTED};font-weight:600'>· सांकेतिक सेतु</span></h1>
-<div class='tag'>A bridge between Indian Sign Language and spoken language — signs become sentences and speech, in real time.</div>
-<span class='chip'><span class='dot' style='background:{SAFFRON}'></span>Transformer <b>{N_SIGNS} signs{f' · {top1:.1f}% test top-1' if top1 else ''}</b></span>
-<span class='chip'><span class='dot' style='background:{INDIGO}'></span>Focus <b>{esc(focus_txt)}</b></span>
-<span class='chip'><span class='dot' style='background:{GREEN}'></span>Device <b>{esc(DEV_LABEL)}</b></span>
-<span class='chip'><span class='dot' style='background:{GREEN}'></span>Storage <b>{STORE.label}</b></span>
-</div>""", unsafe_allow_html=True)
+st.markdown(f"""<div class='masthead'>
+<div class='wordmark'>SignSetu<span>सांकेतिक सेतु</span></div>
+<div class='facts'>
+<div class='fact'>Model<b>Transformer · {N_SIGNS} signs{f' · {top1:.1f}% top-1' if top1 else ''}</b></div>
+<div class='fact'>Focus<b>{esc(focus_txt)}</b></div>
+<div class='fact'>Device<b>{esc(DEV_LABEL)}</b></div>
+<div class='fact'>Storage<b>{STORE.label}</b></div>
+</div></div>""", unsafe_allow_html=True)
 
-PAGES = ["🏠 Home", "🎥 Live Translate", "💬 Conversation", "🎓 Learn & Practice", "📁 Video Upload", "🧪 Test Samples",
-         "📊 Model Report", "📖 Vocabulary", "🗂 History"]
+PAGES = ["Home", "Live Translate", "Conversation", "Learn & Practice", "Video Upload", "Test Samples",
+         "Model Report", "Vocabulary", "History"]
 page = st.radio("Section", PAGES, horizontal=True, key="page", label_visibility="collapsed")
 
 
@@ -653,28 +577,62 @@ def open_camera(idx):
     test_file = os.environ.get("SIGNSETU_CAMERA_FILE")      # testing hook: feed a video file through the webcam loop
     if test_file:
         return cv2.VideoCapture(test_file)
-    backend = cv2.CAP_DSHOW if os.name == "nt" else cv2.CAP_V4L2
+    backend = isl_core.camera_backend(cv2)
     for _try in range(14):      # a rerun may start while the previous run is still releasing the device
         cap = cv2.VideoCapture(idx, backend)
         if cap.isOpened():
             break
         cap.release(); time.sleep(0.25)
+    else:                       # native backend failed: let OpenCV auto-detect before giving up
+        cap = cv2.VideoCapture(idx)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640); cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480); cap.set(cv2.CAP_PROP_FPS, 30)
     cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-    return cap
+    return isl_core.LatestFrame(cap)
 
 
-def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, rec_flag="rec_req", stop_after=False):
+INSTANT_THR, INSTANT_NEED = 0.95, 3
+
+
+def live_step(seg, lv):
+    """Real-time hook, called once per frame. While a sign is in progress it shows a live guess and, in instant mode, commits the
+    sign as soon as the model has been very sure for INSTANT_NEED checks in a row. Returns a finished segment or None."""
+    if seg.state != "SIGNING" or len(seg.buf) < 10:
+        if lv["shown"]:
+            guess_ph.empty(); lv.update(shown=False, streak=0, last=None)
+        return None
+    lv["n"] += 1
+    if lv["n"] % 2:
+        return None
+    probs = isl_core.focus_probs(PRED.predict_segment(np.stack(seg.buf)), ALLOWED)
+    order = np.argsort(-probs)
+    top, p1 = int(order[0]), float(probs[order[0]])
+    gap = p1 - float(probs[order[1]])
+    if top != REJ and p1 >= 0.4:
+        guess_ph.markdown(f"<div class='guess'><span class='label'>Hearing</span> {esc(GLOSS[top])}"
+                          f"<span class='mono'>{p1*100:.0f}%</span></div>", unsafe_allow_html=True)
+        lv["shown"] = True
+    sure = top != REJ and p1 >= max(thr, INSTANT_THR) and gap >= 0.3
+    lv["streak"], lv["last"] = ((lv["streak"] + 1 if top == lv["last"] else 1), top) if sure else (0, None)
+    if instant and lv["streak"] >= INSTANT_NEED:
+        lv.update(streak=0, last=None)
+        return seg.commit_early()
+    return None
+
+
+def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, rec_flag="rec_req", stop_after=False, live=False):
     """Shared webcam loop for Live Translate and Practice. Frames stay in memory; nothing is stored."""
     cap = open_camera(int(cam_src.split()[-1]))
     if not cap.isOpened():
         cap.release()
+        hint = (" On macOS, allow camera access for the app that launched Streamlit (Terminal / iTerm / VS Code) under "
+                "System Settings → Privacy & Security → Camera, then restart it." if sys.platform == "darwin" else "")
         frame_ph.error("Could not open the camera. Close other apps that use it, try another camera index, "
-                       "or pick “Simulate” in the sidebar.")
+                       f"or pick “Simulate” in the sidebar.{hint}")
         return
     ex = isl_core.LiveExtractor(model_complexity=0 if fast_mp else 1)
     seg = isl_core.Segmenter(idle_end=idle_end)
     fps, last, rec, rec_buf, shown_prev, coach_t = 0.0, time.time(), None, [], None, 0.0
+    lv, lm_sum, lm_n, warned = dict(n=0, shown=False, streak=0, last=None), 0.0, 0, False
     try:
         while st.session_state.get(run_key):
             ok, bgr = cap.read()
@@ -686,6 +644,11 @@ def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, 
             t0 = time.perf_counter()
             base, info, res = ex.process(rgb)
             lm_ms = (time.perf_counter() - t0) * 1000
+            lm_sum, lm_n = lm_sum + lm_ms, lm_n + 1
+            if lm_n == 40 and lm_sum / lm_n > 45 and not fast_mp and not warned:
+                warned = True
+                notice_ph.info(f"Landmarks take {lm_sum / lm_n:.0f} ms per frame on this machine. For smoother real-time "
+                               "translation switch on “Fast landmark model” under Advanced.")
             disp = draw_landmarks(rgb.copy(), res) if show_lm else rgb.copy()
             if mirror_prev != mirror_in:
                 disp = cv2.flip(disp, 1)
@@ -703,11 +666,11 @@ def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, 
                         if n <= 0:
                             rec.update(phase="cap", t0=now)
                         else:
-                            cv2.putText(disp, str(n), (disp.shape[1] // 2 - 30, disp.shape[0] // 2 + 30), cv2.FONT_HERSHEY_DUPLEX, 4, _rgb(SAFFRON), 8)
+                            cv2.putText(disp, str(n), (disp.shape[1] // 2 - 30, disp.shape[0] // 2 + 30), cv2.FONT_HERSHEY_DUPLEX, 4, _rgb(CLAY), 8)
                     else:
                         rec_buf.append(base); state = "RECORDING"
                         w = int(disp.shape[1] * min(el / cap_secs, 1.0))
-                        cv2.rectangle(disp, (0, disp.shape[0] - 8), (w, disp.shape[0]), _rgb(RED), -1)
+                        cv2.rectangle(disp, (0, disp.shape[0] - 8), (w, disp.shape[0]), _rgb(INK), -1)
                         if el >= cap_secs:
                             state = "PREDICTING"
                             if sum(1 for x in rec_buf if np.abs(x).sum() > 0) >= 8:
@@ -718,13 +681,18 @@ def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, 
                             rec, rec_buf = None, []
             else:
                 out = seg.update(base, info["active"])
+                if out is None and live:
+                    out = live_step(seg, lv)
                 state = seg.state
             if out is not None:
+                if live:
+                    guess_ph.empty(); lv.update(shown=False, streak=0, last=None)
                 on_segment(out, lm_ms)
                 if stop_after:
                     break
             shown = "LOW CONFIDENCE" if (ss["status"] == "LOW CONFIDENCE" and state in ("IDLE", "READY")) else state
-            cv2.putText(disp, f"{fps:4.1f} FPS", (10, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+            lag = (time.time() - getattr(cap, "t", now)) * 1000
+            cv2.putText(disp, f"{fps:4.1f} FPS  {lag:3.0f} ms behind", (10, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
             show_frame(frame_ph, disp)
             if shown != shown_prev:
                 status_ph.markdown(pill(shown), unsafe_allow_html=True); shown_prev = shown
@@ -737,6 +705,7 @@ def camera_loop(run_key, frame_ph, status_ph, coach_ph, on_segment, push=False, 
 def sim_stream(sample_ids, frame_ph, status_ph, on_segment, run_key, fps=15):
     """Replay held-out landmark clips through the same segmenter + classifier as the webcam path."""
     seg = isl_core.Segmenter(idle_end=idle_end)
+    lv = dict(n=0, shown=False, streak=0, last=None)
     zero = np.zeros(252, np.float32)
     shown_prev = None
     for si in sample_ids:
@@ -748,9 +717,13 @@ def sim_stream(sample_ids, frame_ph, status_ph, on_segment, run_key, fps=15):
                 break
             show_frame(frame_ph, skeleton_canvas(fb, "replaying a held-out test clip through the live pipeline", size=(640, 420)))
             out = seg.update(fb, bool(np.abs(fb).sum() > 0))
+            if out is None and "guess_ph" in globals():
+                out = live_step(seg, lv)
             if seg.state != shown_prev:
                 status_ph.markdown(pill(seg.state), unsafe_allow_html=True); shown_prev = seg.state
             if out is not None:
+                if "guess_ph" in globals():
+                    guess_ph.empty(); lv.update(shown=False, streak=0, last=None)
                 on_segment(out, 0.0)
             time.sleep(1 / fps)
 
@@ -762,26 +735,30 @@ def demo_samples_for(keys):
 
 # ---------------------------------------------------------------------------------------------- page: home
 if page == PAGES[0]:
+    st.markdown("<div class='hero'><div class='eyebrow'>Indian Sign Language · real time</div>"
+                "<h1>A bridge between signing and speaking.</h1>"
+                "<p>SignSetu turns signs into natural English and Hindi sentences, speaks them aloud, and brings the other person's "
+                "reply back as large live captions. It runs on an ordinary webcam and keeps video on your device.</p></div>",
+                unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
-    for col, (ic, t, d) in zip((c1, c2, c3), (
-            ("✋", "1 · Sign", "MediaPipe tracks 21 points on each hand and your face — no gloves, no special camera."),
-            ("🧠", "2 · Understand", f"A Transformer recognises {N_SIGNS} ISL signs; a grammar engine turns ISL word order into natural English and Hindi."),
-            ("🔊", "3 · Speak", "The sentence is spoken aloud instantly, and the hearing person's reply comes back as large live captions."))):
-        col.markdown(f"<div class='card'><div style='font-size:30px'>{ic}</div><h4 style='margin:6px 0'>{t}</h4>"
-                     f"<div class='muted'>{d}</div></div>", unsafe_allow_html=True)
+    for col, (no, t, d) in zip((c1, c2, c3), (
+            ("01", "Sign", "MediaPipe tracks 21 points on each hand and your face — no gloves, no special camera."),
+            ("02", "Understand", f"A Transformer recognises {N_SIGNS} ISL signs; a grammar engine turns ISL word order into natural English and Hindi."),
+            ("03", "Speak", "The sentence is spoken aloud instantly, and the hearing person's reply comes back as large live captions."))):
+        col.markdown(f"<div class='card'><div class='eyebrow'>{no}</div><h4>{t}</h4><div class='muted'>{d}</div></div>", unsafe_allow_html=True)
     st.markdown("#### Where it helps — try a situation")
     st.caption("Each demo replays real held-out test clips through the exact live pipeline, then builds and speaks the sentence. "
                "With a webcam, pick the same situation in the sidebar and sign yourself.")
     scen = list(isl_lang.SCENARIOS.items())
     for row in range(0, len(scen), 3):
         cols = st.columns(3)
-        for col, (name, sc) in zip(cols, scen[row:row + 3]):
+        for j, (col, (name, sc)) in enumerate(zip(cols, scen[row:row + 3])):
             demo_s = isl_lang.compose(sc["demo"], HINDI_OF)
-            col.markdown(f"<div class='card usecase'><div class='ic'>{sc['icon']}</div><h4>{esc(name)}</h4>"
-                         f"<div class='muted' style='font-size:14px'>{esc(sc['blurb'])}</div>"
+            col.markdown(f"<div class='card usecase'><div class='no'>{row + j + 1:02d}</div><h4>{esc(name)}</h4>"
+                         f"<div class='muted'>{esc(sc['blurb'])}</div>"
                          f"<div style='margin-top:8px'>{''.join(f'<span class=gloss>{esc(GLOSS[KEY2IDX[k]].upper())}</span>' for k in sc['demo'])}</div>"
-                         f"<div style='margin-top:6px;font-weight:600'>→ “{esc(demo_s['en'])}”</div></div>", unsafe_allow_html=True)
-            col.button(f"▶ Run the {name} demo", key=f"demo_{name}", on_click=go_demo, args=(name,), use_container_width=True)
+                         f"<div style='margin-top:10px;font:italic 400 18px var(--serif)'>“{esc(demo_s['en'])}”</div></div>", unsafe_allow_html=True)
+            col.button(f"Run the {name} demo", key=f"demo_{name}", on_click=go_demo, args=(name,), use_container_width=True)
     st.markdown("#### What makes SignSetu different")
     f1, f2, f3, f4 = st.columns(4)
     for col, (t, d) in zip((f1, f2, f3, f4), (
@@ -789,7 +766,7 @@ if page == PAGES[0]:
             ("Emergency SOS", "Signs like HELP, ACCIDENT or AMBULANCE trigger a full-width alert and speak the request aloud immediately."),
             ("Two-way conversation", "Quick phrases, typed replies and live speech captions let a hearing person answer back."),
             ("Learn with feedback", "Practise any sign against a reference replay and get a score, XP, streaks and concrete coaching."))):
-        col.markdown(f"<div class='card' style='min-height:170px'><b>{t}</b><div class='muted' style='font-size:14px;margin-top:6px'>{d}</div></div>",
+        col.markdown(f"<div class='card' style='min-height:190px'><h4>{t}</h4><div class='muted'>{d}</div></div>",
                      unsafe_allow_html=True)
     st.caption(DISCLAIMER)
 
@@ -805,9 +782,10 @@ if page == PAGES[1]:
             ss["cam_on"] = False
         cam_on = c1.toggle("Camera on" if cam_src != SIM else "Play demo", key="cam_on")
         if mode == "Push-to-sign" and cam_src != SIM:
-            c2.button("⏺ Record a sign", key="rec_btn", on_click=lambda: ss.update(rec_req=True))
+            c2.button("Record a sign", key="rec_btn", on_click=lambda: ss.update(rec_req=True))
         status_ph = c3.empty()
         frame_ph = st.empty()
+        guess_ph = st.empty()
         coach_ph = st.empty()
         with st.expander("Tips for best results"):
             st.write("Sit 1–1.5 m from the camera with head-to-waist in frame · even front lighting, plain background · "
@@ -817,15 +795,15 @@ if page == PAGES[1]:
         sos_ph = st.empty()
         sent_ph = st.empty()
         b1, b2 = st.columns(2)
-        b1.button("🔊 Speak sentence", on_click=cb_speak, use_container_width=True, type="primary")
-        b2.button("💬 Send to chat", on_click=cb_to_chat, use_container_width=True,
+        b1.button("Speak sentence", on_click=cb_speak, use_container_width=True, type="primary")
+        b2.button("Send to chat", on_click=cb_to_chat, use_container_width=True,
                   help="Speak it and add it to the Conversation page")
         b3, b4, b5 = st.columns(3)
-        b3.button("↩ Undo", on_click=cb_undo, use_container_width=True)
-        b4.button("🗑 Clear", on_click=cb_clear, use_container_width=True)
-        b5.button("💾 Save", on_click=cb_save, use_container_width=True)
+        b3.button("Undo", on_click=cb_undo, use_container_width=True)
+        b4.button("Clear", on_click=cb_clear, use_container_width=True)
+        b5.button("Save", on_click=cb_save, use_container_width=True)
         if ai_polish and ss["words"]:
-            st.button("✨ Polish sentence with AI", on_click=cb_polish)
+            st.button("Polish sentence with AI", on_click=cb_polish)
         alt_ph = st.empty()
         card_ph = st.empty()
         top5_ph = st.empty()
@@ -834,19 +812,19 @@ if page == PAGES[1]:
         s = sentence()
         if ss["sos"]:
             with sos_ph.container():
-                st.markdown(f"<div class='sos'><h3>🚨 Emergency</h3><div style='font-size:20px;font-weight:700'>{esc(ss['sos'])}</div>"
-                            f"<div style='margin-top:6px'>India emergency: <b>112</b> · Ambulance <b>108</b> · Police <b>100</b> · Fire <b>101</b></div></div>",
+                st.markdown(f"<div class='sos'><div class='eyebrow'>Emergency</div><div class='request'>{esc(ss['sos'])}</div>"
+                            f"<div class='numbers'>India emergency: <b>112</b> · Ambulance <b>108</b> · Police <b>100</b> · Fire <b>101</b></div></div>",
                             unsafe_allow_html=True)
                 if final:
                     st.button("Dismiss alert", on_click=cb_dismiss_sos, key=f"sos_x_{ss['event']}")
         else:
             sos_ph.empty()
         glosses = "".join(f"<span class='gloss'>{esc(GLOSS[KEY2IDX[k]].upper())}</span>" for k in ss["words"])
-        tag = " · ✨ AI polished" if s.get("polished") else ""
+        tag = " · AI polished" if s.get("polished") else ""
         body = (f"<div class='sentence'>{esc(s['en'])}</div>" + (f"<div class='sentence-hi hi'>{esc(s['hi'])}</div>" if hi_on else "")
-                if s["en"] else "<div class='sentence' style='color:#CBD5E1'>Your sentence appears here…</div>")
+                if s["en"] else "<div class='sentence' style='color:#b0aea5'>Your sentence appears here…</div>")
         sent_ph.markdown(f"<div class='card'><div class='label'>Sentence{tag}</div>{body}"
-                         f"<div style='margin-top:10px'>{glosses or '<span class=muted style=font-size:13px>Signed words will line up here</span>'}</div></div>",
+                         f"<div style='margin-top:10px'>{glosses or '<span class=muted>Signed words will line up here</span>'}</div></div>",
                          unsafe_allow_html=True)
         card_ph.markdown(pred_card(ss["last_probs"], hi_on, ss["last_accepted"], ss["last_latency"]), unsafe_allow_html=True)
         top5_ph.markdown(top5_html(ss["last_probs"]) if ss["last_probs"] is not None else "", unsafe_allow_html=True)
@@ -870,8 +848,8 @@ if page == PAGES[1]:
 
     if not cam_on:
         frame_ph.markdown(f"<div class='card soft' style='height:360px;display:flex;align-items:center;justify-content:center;"
-                          f"flex-direction:column;text-align:center'><div style='font-size:46px'>📷</div>"
-                          f"<div style='font-weight:700;font-size:18px'>{'Turn the camera on to start translating' if cam_src != SIM else 'Press “Play demo” to replay a scripted conversation'}</div>"
+                          f"flex-direction:column;text-align:center'>"
+                          f"<div style='font:400 26px var(--serif)'>{'Turn the camera on to start translating' if cam_src != SIM else 'Press “Play demo” to replay a scripted conversation'}</div>"
                           f"<div class='muted'>Frames are processed on this device and never stored.</div></div>", unsafe_allow_html=True)
     elif cam_src == SIM and DEMO_D is not None:
         if sim_pick and sim_pick.startswith("Demo: "):
@@ -891,36 +869,36 @@ if page == PAGES[1]:
             ss["say"] = (s["en"], s["hi"], True)
         st.rerun()
     else:
-        camera_loop("cam_on", frame_ph, status_ph, coach_ph, on_seg, push=(mode == "Push-to-sign"))
+        camera_loop("cam_on", frame_ph, status_ph, coach_ph, on_seg, push=(mode == "Push-to-sign"), live=True)
 
 
 # ---------------------------------------------------------------------------------------------- page: conversation
 CAPTIONS_HTML = """
-<div id="wrap" style="font-family:Inter,'Noto Sans Devanagari',system-ui,sans-serif">
-  <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-    <button id="btn" style="background:#4F46E5;color:#fff;border:0;border-radius:10px;padding:9px 16px;font-weight:700;cursor:pointer">🎙 Start live captions</button>
-    <select id="lang" style="border:1px solid #E3E7EF;border-radius:10px;padding:8px">
+<div id="wrap" style="font-family:Inter,system-ui,sans-serif">
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+    <button id="btn" style="background:#faf9f5;color:#141413;border:1px solid #cccbc8;border-radius:0 0 8px 8px;padding:11px 20px;font:500 15px Inter,sans-serif;cursor:pointer">Start live captions</button>
+    <select id="lang" style="background:#faf9f5;color:#141413;border:1px solid #cccbc8;border-radius:8px;padding:10px;font:400 14px Inter,sans-serif">
       <option value="en-IN">English (India)</option><option value="hi-IN">हिन्दी</option></select>
-    <span id="st" style="color:#64748B;font-size:13px"></span>
+    <span id="st" style="color:#5f5e59;font-size:13px"></span>
   </div>
-  <div id="cap" style="min-height:150px;max-height:220px;overflow:auto;background:#EEF2FF;border:1px solid #C7D2FE;border-radius:14px;padding:14px;font-size:30px;font-weight:700;color:#0F172A;line-height:1.3">
-    <span style="color:#94A3B8;font-size:18px;font-weight:500">The hearing person speaks — their words appear here in large text for the signer.</span></div>
+  <div id="cap" style="min-height:150px;max-height:220px;overflow:auto;background:#e3dacc;border-radius:16px;padding:20px;font:400 30px/1.3 'Source Serif 4',Georgia,serif;color:#141413">
+    <span style="color:#5f5e59;font:400 18px 'Source Serif 4',Georgia,serif">The hearing person speaks — their words appear here in large text for the signer.</span></div>
 </div>
 <script>
 const R = window.SpeechRecognition || window.webkitSpeechRecognition;
 const btn = document.getElementById('btn'), cap = document.getElementById('cap'), st = document.getElementById('st');
 let rec = null, on = false, finalText = '';
-if (!R) { btn.disabled = true; btn.style.background = '#94A3B8'; st.textContent = 'Live captions need Chrome or Edge.'; }
+if (!R) { btn.disabled = true; btn.style.color = '#87867f'; st.textContent = 'Live captions need Chrome or Edge.'; }
 btn.onclick = () => {
-  if (on) { on = false; rec && rec.stop(); btn.textContent = '🎙 Start live captions'; st.textContent = ''; return; }
+  if (on) { on = false; rec && rec.stop(); btn.textContent = 'Start live captions'; st.textContent = ''; return; }
   rec = new R(); rec.lang = document.getElementById('lang').value; rec.continuous = true; rec.interimResults = true;
   rec.onresult = (e) => { let interim = '';
     for (let i = e.resultIndex; i < e.results.length; i++) {
       if (e.results[i].isFinal) finalText += e.results[i][0].transcript + ' '; else interim += e.results[i][0].transcript; }
-    cap.innerHTML = finalText.slice(-400) + '<span style="color:#6366F1">' + interim + '</span>'; cap.scrollTop = cap.scrollHeight; };
+    cap.innerHTML = finalText.slice(-400) + '<span style="color:#5f5e59;font-style:italic">' + interim + '</span>'; cap.scrollTop = cap.scrollHeight; };
   rec.onerror = (e) => { st.textContent = 'Mic: ' + e.error; };
   rec.onend = () => { if (on) rec.start(); };
-  rec.start(); on = true; btn.textContent = '⏹ Stop'; st.textContent = 'Listening…';
+  rec.start(); on = true; btn.textContent = 'Stop'; st.textContent = 'Listening…';
 };
 </script>"""
 
@@ -930,17 +908,17 @@ if page == PAGES[2]:
         say(en, hi, interrupt=intr)
     left, right = st.columns(2, gap="large")
     with left:
-        st.markdown("##### 🤟 Signer")
+        st.markdown("##### Signer")
         s = sentence()
         if s["en"]:
             st.markdown(f"<div class='card'><div class='label'>From Live Translate</div><div class='sentence'>{esc(s['en'])}</div>"
                         f"<div class='sentence-hi hi'>{esc(s['hi'])}</div></div>", unsafe_allow_html=True)
-            st.button("💬 Send & speak this sentence", on_click=cb_to_chat, type="primary")
+            st.button("Send and speak this sentence", on_click=cb_to_chat, type="primary")
         else:
             st.markdown("<div class='card soft muted'>Sign on the <b>Live Translate</b> page — your sentence shows up here, ready to send.</div>",
                         unsafe_allow_html=True)
         scen = scenario if scenario != isl_lang.ALL_SIGNS else "Everyday"
-        st.markdown(f"**Quick phrases · {isl_lang.SCENARIOS[scen]['icon']} {scen}**")
+        st.markdown(f"##### Quick phrases · {scen}")
         st.caption("Tap to speak instantly — for things the sign vocabulary cannot say yet.")
         phr = isl_lang.SCENARIOS[scen]["phrases"]
 
@@ -951,7 +929,7 @@ if page == PAGES[2]:
         for i, (en, hi) in enumerate(phr):
             pc[i % 2].button(en, key=f"phr_{scen}_{i}", on_click=cb_phrase, args=(en, hi), use_container_width=True)
     with right:
-        st.markdown("##### 🗣 Hearing person")
+        st.markdown("##### Hearing person")
         components.html(CAPTIONS_HTML, height=250)
         with st.form("reply", clear_on_submit=True):
             reply = st.text_input("Or type a reply", placeholder="e.g. The doctor will see you in 10 minutes")
@@ -964,11 +942,11 @@ if page == PAGES[2]:
     else:
         bubbles = []
         for m in ss["chat"][-30:]:
-            who = "🤟 Signer" if m["who"] == "signer" else "🗣 Hearing person"
-            hi = f"<div class='hi' style='color:{INDIGO};font-weight:600'>{esc(m['hi'])}</div>" if m.get("hi") and hi_on else ""
-            size = "20px" if m["who"] == "speaker" else "17px"
+            who = "Signer" if m["who"] == "signer" else "Hearing person"
+            hi = f"<div class='hi' style='color:{INK2}'>{esc(m['hi'])}</div>" if m.get("hi") and hi_on else ""
+            size = "22px" if m["who"] == "speaker" else "18px"
             bubbles.append(f"<div class='bubble {m['who']}'><div class='who'>{who} · {m['t']}</div>"
-                           f"<div style='font-size:{size};font-weight:600'>{esc(m['en'])}</div>{hi}</div>")
+                           f"<div class='line' style='font-size:{size}'>{esc(m['en'])}</div>{hi}</div>")
         st.markdown("<div class='card'>" + "".join(bubbles) + "</div>", unsafe_allow_html=True)
         cA, cB = st.columns([1, 5])
         cA.button("Clear chat", on_click=lambda: ss.update(chat=[]))
@@ -1011,30 +989,30 @@ if page == PAGES[3]:
         if ss["say"]:
             en, hi, intr = ss["say"]; ss["say"] = None
             say(en, hi, interrupt=intr)
-        (lv_xp, lv_name, lv_ic), nxt = isl_lang.level_for(ss["xp"])
+        (lv_xp, lv_name), nxt = isl_lang.level_for(ss["xp"])
         prog = 1.0 if nxt is None else (ss["xp"] - lv_xp) / (nxt[0] - lv_xp)
         to_next = f" · {nxt[0] - ss['xp']} XP to {nxt[1]}" if nxt else " · max level"
         k1, k2, k3, k4 = st.columns(4)
-        k1.markdown(f"<div class='card'><div class='label'>Level</div><div class='kpi'>{lv_ic} {lv_name}</div>"
+        k1.markdown(f"<div class='card'><div class='label'>Level</div><div class='kpi'>{lv_name}</div>"
                     f"<div class='xpbar' style='margin-top:6px'><div style='width:{prog*100:.0f}%'></div></div>"
-                    f"<div class='muted' style='font-size:12px;margin-top:4px'>{ss['xp']} XP"
+                    f"<div class='muted' style='font:400 13px Inter;margin-top:6px'>{ss['xp']} XP"
                     f"{to_next}</div></div>", unsafe_allow_html=True)
-        k2.markdown(f"<div class='card'><div class='label'>Streak</div><div class='kpi'>🔥 {ss['streak']}</div>"
-                    f"<div class='muted' style='font-size:12px'>best {ss['best_streak']}</div></div>", unsafe_allow_html=True)
-        k3.markdown(f"<div class='card'><div class='label'>Signs mastered</div><div class='kpi'>🏅 {len(ss['mastered'])}</div>"
-                    f"<div class='muted' style='font-size:12px'>of {N_SIGNS}</div></div>", unsafe_allow_html=True)
+        k2.markdown(f"<div class='card'><div class='label'>Streak</div><div class='kpi'>{ss['streak']}</div>"
+                    f"<div class='muted' style='font:400 13px Inter'>best {ss['best_streak']}</div></div>", unsafe_allow_html=True)
+        k3.markdown(f"<div class='card'><div class='label'>Signs mastered</div><div class='kpi'>{len(ss['mastered'])}</div>"
+                    f"<div class='muted' style='font:400 13px Inter'>of {N_SIGNS}</div></div>", unsafe_allow_html=True)
         goal = 5
-        k4.markdown(f"<div class='card'><div class='label'>Today's goal</div><div class='kpi'>🎯 {min(ss['today_done'], goal)}/{goal}</div>"
+        k4.markdown(f"<div class='card'><div class='label'>Today's goal</div><div class='kpi'>{min(ss['today_done'], goal)} / {goal}</div>"
                     f"<div class='xpbar' style='margin-top:6px'><div style='width:{min(ss['today_done'] / goal, 1)*100:.0f}%'></div></div></div>",
                     unsafe_allow_html=True)
 
-        groups = {f"{v['icon']} {k}": [KEY2IDX[x] for x in v["keys"] if x in KEY2IDX] for k, v in isl_lang.SCENARIOS.items()}
+        groups = {k: [KEY2IDX[x] for x in v["keys"] if x in KEY2IDX] for k, v in isl_lang.SCENARIOS.items()}
         for c in isl_core.CATEGORY_ORDER[:-1]:
             idxs = [i for i in range(N_SIGNS) if CATEG[i] == c]
             if idxs:
-                groups[f"📚 {c}"] = idxs
+                groups[c] = idxs
         g1, g2, g3 = st.columns([2, 3, 1.2])
-        default_group = f"{isl_lang.SCENARIOS[scenario]['icon']} {scenario}" if scenario in isl_lang.SCENARIOS else list(groups)[0]
+        default_group = scenario if scenario in isl_lang.SCENARIOS else list(groups)[0]
         grp = g1.selectbox("Lesson", list(groups), index=list(groups).index(default_group), key="lesson")
         pool = sorted(set(groups[grp]), key=lambda i: GLOSS[i])
         todo = [i for i in pool if KEYS[i] not in ss["mastered"]]
@@ -1048,11 +1026,11 @@ if page == PAGES[3]:
             rest = [i for i in todo if i != ss["practice_target"]] or pool
             ss["practice_target"] = random.choice(rest); ss["practice_result"] = None
         target = g2.selectbox("Sign to practise", pool, index=pool.index(ss["practice_target"]),
-                              format_func=lambda i: f"{'✅ ' if KEYS[i] in ss['mastered'] else ''}{GLOSS[i]} · {HINDI[i]}")
+                              format_func=lambda i: f"{'✓ ' if KEYS[i] in ss['mastered'] else ''}{GLOSS[i]} · {HINDI[i]}")
         if target != ss["practice_target"]:
             ss["practice_target"], ss["practice_result"] = target, None
         g3.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-        g3.button("🎲 Surprise me", on_click=cb_surprise, use_container_width=True)
+        g3.button("Surprise me", on_click=cb_surprise, use_container_width=True)
         st.progress(len([i for i in pool if KEYS[i] in ss["mastered"]]) / max(len(pool), 1),
                     text=f"Lesson progress: {len([i for i in pool if KEYS[i] in ss['mastered']])}/{len(pool)} signs mastered")
 
@@ -1060,13 +1038,13 @@ if page == PAGES[3]:
         di = demo_index()
         with left:
             st.markdown(f"<div class='card'><div class='label'>Watch · reference</div><div class='pred-word'>{esc(GLOSS[target])}</div>"
-                        f"<div class='pred-hi hi'>{esc(HINDI[target])}</div><div class='muted' style='font-size:13px'>{esc(CATEG[target])}</div></div>",
+                        f"<div class='pred-hi hi'>{esc(HINDI[target])}</div><div class='muted' style='font:400 13px Inter;margin-top:6px'>{esc(CATEG[target])}</div></div>",
                         unsafe_allow_html=True)
             if target in di:
                 st.image(reference_gif(di[target][0]), use_container_width=True,
-                         caption="Landmark replay of a real held-out clip: indigo = left hand, saffron = right hand, relative to the face")
+                         caption="Landmark replay of a real held-out clip: black = left hand, clay = right hand, relative to the face")
             q = GLOSS[target].replace(" / ", " ").replace(" ", "+")
-            st.markdown(f"🎬 [See a human signer on YouTube (ISLRTC)](https://www.youtube.com/results?search_query=ISLRTC+{q}+sign+language)")
+            st.markdown(f"[Watch a human signer on YouTube (ISLRTC)](https://www.youtube.com/results?search_query=ISLRTC+{q}+sign+language)")
         with right:
             st.markdown("<div class='label'>Try it</div>", unsafe_allow_html=True)
             pr_status = st.empty()
@@ -1081,9 +1059,9 @@ if page == PAGES[3]:
             if ss.pop("stop_practice_cam", False):
                 ss["practice_cam"] = False
             bA, bB = st.columns(2)
-            practise_cam = bA.toggle("📷 Practise with camera", key="practice_cam", disabled=cam_src == SIM,
+            practise_cam = bA.toggle("Practise with camera", key="practice_cam", disabled=cam_src == SIM,
                                      help="Sign once — the first sign you make is scored. Pick a webcam in the sidebar.")
-            if bB.button("🧪 Simulate an attempt", use_container_width=True,
+            if bB.button("Simulate an attempt", use_container_width=True,
                          help="Scores a different held-out clip of this sign, so you can see the feedback without a camera."):
                 ids = di.get(target, [])
                 pick = ids[1] if len(ids) > 1 else (ids[0] if ids else None)
@@ -1106,15 +1084,13 @@ if page == PAGES[3]:
                     tips = "".join(f"<li>{esc(t).replace('**', '<b>', 1).replace('**', '</b>', 1)}</li>" for t in r["tips"])
                     st.markdown(f"<div class='card {'result-ok' if ok else 'result-bad'}'>"
                                 f"<div style='display:flex;justify-content:space-between;align-items:center'>"
-                                f"<div><div class='label'>{'Correct!' if ok else 'Keep going'}</div>"
-                                f"<div style='font-size:22px;font-weight:800'>{esc(r['msg'])}</div>{looked}</div>"
-                                f"<div class='big-score' style='color:{GREEN if ok else AMBER}'>{r['score']*100:.0f}%</div></div>"
-                                f"<div style='margin-top:6px;font-weight:600'>+{r['gained']} XP{' · 🔥 streak ' + str(ss['streak']) if ok and ss['streak'] > 1 else ''}</div>"
+                                f"<div><div class='label'>{'Correct' if ok else 'Keep going'}</div>"
+                                f"<div style='font:400 24px var(--serif);margin-top:4px'>{esc(r['msg'])}</div>{looked}</div>"
+                                f"<div class='big-score'>{r['score']*100:.0f}%</div></div>"
+                                f"<div style='margin-top:10px;font:600 13px Inter'>+{r['gained']} XP{' · streak ' + str(ss['streak']) if ok and ss['streak'] > 1 else ''}</div>"
                                 + (f"<div style='margin-top:8px'><b>Coach:</b><ul style='margin:4px 0 0 0'>{tips}</ul></div>" if tips else "")
                                 + "</div>", unsafe_allow_html=True)
                     st.button("Next sign →", on_click=cb_next, type="primary")
-                if ok and time.time() - r["t"] < 3:
-                    st.balloons()
             elif not practise_cam:
                 res_ph.markdown("<div class='card soft muted'>Watch the reference, then switch on the camera and perform the sign once. "
                                 "You'll get a score, XP and tips.</div>", unsafe_allow_html=True)
@@ -1224,7 +1200,7 @@ if page == PAGES[5]:
             ss["sample_pick"] = names[0]
         cA, cB = st.columns([4, 1])
         cB.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-        cB.button("🎲 Random sample", on_click=lambda: ss.update(sample_pick=names[int(np.random.randint(len(names)))]), use_container_width=True)
+        cB.button("Random sample", on_click=lambda: ss.update(sample_pick=names[int(np.random.randint(len(names)))]), use_container_width=True)
         pick = cA.selectbox("Held-out test clip", names, key="sample_pick")
         k = names.index(pick); truth = int(labels[k])
         t1 = time.perf_counter(); probs = PRED.predict(bases[k]); ms = (time.perf_counter() - t1) * 1000
@@ -1234,7 +1210,7 @@ if page == PAGES[5]:
             col.image(skeleton_canvas(bases[k][t], size=(320, 240)), caption=f"frame {t + 1}/20", use_container_width=True)
         c1, c2 = st.columns([1, 1])
         c1.markdown(pred_card(probs, hi_on, ok, ms), unsafe_allow_html=True)
-        c1.markdown(f"**Ground truth:** {esc(GLOSS[truth])} &nbsp; <span class='pill' style='background:{GREEN if ok else RED}'>{'✓ correct' if ok else '✗ wrong'}</span>"
+        c1.markdown(f"**Ground truth:** {esc(GLOSS[truth])} &nbsp; <span class='state {'on' if ok else 'half'}'>{'correct' if ok else 'wrong'}</span>"
                     f" &nbsp; <span class='muted'>{esc(DEMO_D['domain'][k])}</span>", unsafe_allow_html=True)
         c2.markdown("<div class='label'>Top-5</div>" + top5_html(probs), unsafe_allow_html=True)
         if ss.get("sample_logged") != pick:
@@ -1266,7 +1242,7 @@ if page == PAGES[6]:
         df = pd.DataFrame(eps or [], columns=["model", "epoch", "val_top1"]).drop_duplicates(["model", "epoch"], keep="last")
         if len(df):
             fig = go.Figure()
-            for mdl, col in (("bigru", "#94A3B8"), ("transformer", SAFFRON)):
+            for mdl, col in (("bigru", "#87867f"), ("transformer", INK)):
                 d = df[df.model == mdl]
                 fig.add_trace(go.Scatter(x=d.epoch, y=d.val_top1 * 100, name=f"{mdl} val top-1", line=dict(color=col, width=2.5)))
             fig.update_layout(**PLOT, height=320, title="Validation top-1 (%)", margin=dict(l=10, r=10, t=40, b=10))
@@ -1275,7 +1251,7 @@ if page == PAGES[6]:
             st.image(str(ROOT / "assets/figures/training_curves.png"), use_container_width=True)
         c1, c2 = st.columns(2)
         cats = sorted(METR["per_category"].items(), key=lambda kv: kv[1])
-        fig = go.Figure(go.Bar(x=[v * 100 for _, v in cats], y=[c for c, _ in cats], orientation="h", marker_color=INDIGO))
+        fig = go.Figure(go.Bar(x=[v * 100 for _, v in cats], y=[c for c, _ in cats], orientation="h", marker_color=INK))
         fig.update_layout(**PLOT, height=420, title="Top-1 by category (%)", margin=dict(l=10, r=10, t=40, b=10), xaxis_range=[90, 100.5])
         c1.plotly_chart(fig, use_container_width=True)
         c2.markdown("**Most confused pairs**")
@@ -1330,21 +1306,21 @@ if page == PAGES[8]:
         st.caption(f"Stored in {STORE.label}.")
         for col, (lab, val) in zip(st.columns(5), (("Predictions", f"{n:,}"), ("Acceptance rate", f"{float(acc)*100:.0f}%"),
                                    ("Avg confidence", f"{float(conf)*100:.0f}%"), ("Avg latency", f"{float(lat):.0f} ms"),
-                                   (f"Practice · {float(pacc)*100:.0f}% ✓", f"{pn:,}"))):
+                                   (f"Practice · {float(pacc)*100:.0f}% correct", f"{pn:,}"))):
             col.markdown(f"<div class='card'><div class='label'>{lab}</div><div class='kpi mono'>{val}</div></div>", unsafe_allow_html=True)
         c1, c2 = st.columns(2)
         per_day = STORE.read("SELECT date_trunc('day', created_at)::date, count(*) FROM predictions GROUP BY 1 ORDER BY 1",
                              "SELECT date(created_at), count(*) FROM predictions GROUP BY 1 ORDER BY 1")
         if per_day:
             d = pd.DataFrame(per_day, columns=["day", "n"]); d["day"] = d["day"].astype(str)
-            fig = go.Figure(go.Bar(x=d.day, y=d.n, marker_color=SAFFRON)); fig.update_xaxes(type="category")
+            fig = go.Figure(go.Bar(x=d.day, y=d.n, marker_color=INK)); fig.update_xaxes(type="category")
             fig.update_layout(**PLOT, height=300, title="Predictions per day", margin=dict(l=10, r=10, t=40, b=10))
             c1.plotly_chart(fig, use_container_width=True)
         top = STORE.read("SELECT v.gloss, count(*) FROM predictions p JOIN vocabulary v ON v.id=p.top1_vocab_id WHERE p.accepted GROUP BY 1 ORDER BY 2 DESC LIMIT 15",
                          "SELECT gloss, count(*) FROM predictions WHERE accepted=1 GROUP BY 1 ORDER BY 2 DESC LIMIT 15")
         if top:
             d = pd.DataFrame(top, columns=["gloss", "n"])[::-1]
-            fig = go.Figure(go.Bar(x=d.n, y=d.gloss, orientation="h", marker_color=INDIGO))
+            fig = go.Figure(go.Bar(x=d.n, y=d.gloss, orientation="h", marker_color=INK))
             fig.update_layout(**PLOT, height=300, title="Top recognised signs", margin=dict(l=10, r=10, t=40, b=10))
             c2.plotly_chart(fig, use_container_width=True)
         f1, f2 = st.columns(2)
